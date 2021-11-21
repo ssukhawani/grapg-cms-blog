@@ -1,5 +1,5 @@
 .post {
-  @apply leading-relaxed text-xs md:text-sm lg:text-lg break-normal;
+  @apply leading-relaxed text-xs md:text-sm lg:text-lg break-normal ;
 }
 
 .post p,
