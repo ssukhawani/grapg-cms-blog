@@ -1,0 +1,79 @@
+.post {
+  @apply leading-relaxed text-xs md:text-sm lg:text-lg break-normal;
+}
+
+.post p,
+.post ul,
+.post ol,
+.post blockquote {
+  @apply my-4 md:my-6 text-xs md:text-sm lg:text-lg;
+}
+
+.post h1 {
+  @apply mt-6 md:mt-12 mb-4 text-lg md:text-3xl leading-snug font-semibold;
+}
+
+.post h2 {
+  @apply mt-12 mb-4 text-lg md:text-2xl leading-snug font-semibold;
+}
+
+.post h3 {
+  @apply mt-8 mb-4 text-base md:text-xl leading-snug font-semibold;
+}
+
+.post blockquote {
+  @apply border-l-4 border-gray-400 pl-4 bg-gray-200 sm:py-0.5 text-xs md:text-sm lg:text-lg;
+}
+
+.post pre {
+  @apply bg-black md:text-base text-white rounded-md p-4 text-xs;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -pre-wrap;
+  white-space: -o-pre-wrap;
+  word-wrap: break-word;
+}
+.post a {
+  @apply text-blue-600 underline visited:text-green-600 transition duration-300 hover:text-pink-600;
+}
+
+.post ul {
+  @apply list-disc pl-4;
+}
+
+.post ol {
+  @apply list-decimal pl-4;
+}
+
+.otroBlockquote{
+  @apply py-6 px-10 relative text-xs sm:text-base;
+font-size: 1em;
+width:90%;
+margin:10px auto;
+font-style: normal;
+color: #555555;
+border-left:8px solid #78C0A8 ;
+line-height:1.24;
+background:#EDEDED;
+}
+
+.otroBlockquote::before{
+content: "\201C";
+color:#78C0A8;
+font-size:4em;
+position: absolute;
+left: 10px;
+top:-10px;
+}
+
+.otroBlockquote::after{
+content: '';
+}
+
+.otroBlockquote span{
+  @apply font-semibold mt-4 block text-xs sm:text-base;
+color:#333333;
+font-style: normal;
+}
+
