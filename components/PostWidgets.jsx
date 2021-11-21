@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import moment from "moment";
 import Link from "next/link";
-import postStyles from "./post-styles.module.css";
 import Image from 'next/image'
 
 import { getRecentPosts, getSimilarPosts } from "../services";
@@ -19,9 +18,9 @@ const PostWidgets = ({ categories, slug }) => {
   }, [slug]);
   return (
     <div className="bg-white rounded-lg shadow-lg p-4 sm:p-8 mb-8">
-      <h3 className="text-center text-sm sm:text-xl mb-4 sm:mb-8 font-semibold border-b border-blue-300 pb-4">
+      <h2 className="text-center text-sm sm:text-xl mb-4 sm:mb-8 font-semibold border-b border-blue-300 pb-4">
         {slug ? "Related Posts" : "Recent Posts"}
-      </h3>
+      </h2>
       {relatedPosts.map((post) => (
         <div key={post.title} className="flex items-center w-full mb-4">
           <div className="w-16 flex-none">

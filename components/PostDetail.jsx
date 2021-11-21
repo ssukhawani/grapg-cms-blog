@@ -1,9 +1,15 @@
 import React from "react";
 import moment from "moment";
 import postStyles from "./post-styles.module.css";
+import Head from "next/head";
 
 const PostDetail = ({ post }) => {
   return (
+    <>
+    <Head>
+      <title>{post.title}</title>
+      <meta name="description" content={post.title}/>
+    </Head>
     <div className="bg-white shadow-lg rounded-lg lg:p-8 pb-12 mb-8">
       <div className="relative overflow-hidden shadow-md mb-6">
         <img
@@ -55,6 +61,7 @@ const PostDetail = ({ post }) => {
         />
       </div>
     </div>
+    </>
   );
 };
 
