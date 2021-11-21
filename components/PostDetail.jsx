@@ -16,7 +16,7 @@ const PostDetail = ({ post }) => {
       <meta property="og:description" content={post.content.text.slice(0,250)} key="ogdesc" />
     </Head>
     <div className="bg-white shadow-lg rounded-lg lg:p-8 pb-12 mb-8">
-      <div className="relative overflow-hidden shadow-md mb-6">
+      <div className="relative overflow-hidden shadow-md mb-2 md:mb-6">
         <img
           src={post.featuredImage.url}
           alt={post.title}
@@ -24,7 +24,7 @@ const PostDetail = ({ post }) => {
         />
       </div>
       <div className="px-4 lg:px-0">
-        <div className="flex items-center w-full mb-8 justify-center">
+        <div className="flex items-center w-full mb-4 md:mb-8 justify-center">
           <div className="flex items-center justify-center lg:mb-0 lg:w-auto mr-8">
             <img
               src={post.author.photo.url}

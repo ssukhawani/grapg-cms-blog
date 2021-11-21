@@ -221,3 +221,38 @@ export const getCategoryPost = async (slug) => {
 
   return result.postsConnection.edges;
 };
+
+
+export const getPages = async () => {
+  const query = gql`
+    query GetPages {
+      pages {
+        slug
+        title
+      }
+    }
+  `;
+  const result = await request(graphqlAPI, query);
+
+  return result.pages;
+};
+
+
+export const getPageDetails = async (slug) => {
+  const query = gql`
+    query GetPageDetails($slug: String!) {
+      post(where: { slug: $slug }) {
+        slug
+        title
+        content {
+          html
+          text
+        }
+      }
+    }
+  `;
+
+  const result = await request(graphqlAPI, query, { slug });
+
+  return result.post;
+};
