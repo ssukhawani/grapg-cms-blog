@@ -63,6 +63,7 @@ export const getPostDetails = async (slug) => {
         }
         content {
           html
+          text
         }
       }
     }

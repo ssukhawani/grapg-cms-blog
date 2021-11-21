@@ -9,6 +9,11 @@ const PostDetail = ({ post }) => {
     <Head>
       <title>{post.title}</title>
       <meta name="description" content={post.title}/>
+      <meta property="og:url" content={process.env.SITE_URL+post.slug} key="ogurl" />
+      <meta property="og:image" content={post.featuredImage.url} key="ogimage" />
+      <meta property="og:site_name" content="FrontendFreck" key="ogsitename" />
+      <meta property="og:title" content={post.title} key="ogtitle" />
+      <meta property="og:description" content={post.content.text.slice(0,250)} key="ogdesc" />
     </Head>
     <div className="bg-white shadow-lg rounded-lg lg:p-8 pb-12 mb-8">
       <div className="relative overflow-hidden shadow-md mb-6">
