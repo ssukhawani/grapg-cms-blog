@@ -5,7 +5,10 @@ class AppDocument extends Document {
         return(
             <Html lang="en">
                 <Head>
-                    <meta name="description" content="This is my App description."/>
+                <link rel="preconnect" href="https://fonts.googleapis.com"/>
+                <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true"/>
+                <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet"></link>
+                <meta name="description" content="FrontendFreck helps you to make your dev journey more exciting with cool resources"/>
                 </Head>
                 <body>
                     <Main></Main>
