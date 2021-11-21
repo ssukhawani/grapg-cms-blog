@@ -6,7 +6,7 @@ import { FeaturedPosts } from '../sections';
 
 export default function Home({posts}) {
   return (
-    <div className="container mx-auto px-10 mb-8">
+    <div className="container mx-auto px-4 sm:px-10 mb-8">
       <Head>
         <title>FrontendFreck</title>
         <link rel="icon" href="/favicon.ico" />
