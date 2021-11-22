@@ -5,7 +5,7 @@ const graphqlAPI = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT;
 export const getPosts = async () => {
   const query = gql`
     query MyQuery {
-      postsConnection {
+      postsConnection(first: 9, orderBy: createdAt_DESC) {
         edges {
           node {
             author {
@@ -28,6 +28,10 @@ export const getPosts = async () => {
               slug
             }
           }
+        }
+        pageInfo {
+          hasNextPage
+          pageSize
         }
       }
     }
@@ -64,6 +68,10 @@ export const getPostDetails = async (slug) => {
         content {
           html
           text
+        }
+        downloads {
+          url
+          title
         }
       }
     }
@@ -134,28 +142,28 @@ export const getCategories = async () => {
 };
 
 export const submitComment = async (obj) => {
-  const result = await fetch('/api/comments',{
-    method: 'POST',
+  const result = await fetch("/api/comments", {
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json'
+      "Content-Type": "application/json",
     },
-    body: JSON.stringify(obj)
-  })
+    body: JSON.stringify(obj),
+  });
 
   return result.json();
 };
 
-export const getComments= async (slug) => {
+export const getComments = async (slug) => {
   const query = gql`
     query GetComments($slug: String!) {
-      comments(where: {post:{slug:$slug}}){
+      comments(where: { post: { slug: $slug } }) {
         name
         createdAt
         comment
       }
     }
   `;
-  const result = await request(graphqlAPI, query,{slug});
+  const result = await request(graphqlAPI, query, { slug });
 
   return result.comments;
 };
@@ -188,7 +196,7 @@ export const getFeaturedPosts = async () => {
 export const getCategoryPost = async (slug) => {
   const query = gql`
     query GetCategoryPost($slug: String!) {
-      postsConnection(where: {categories_some: {slug: $slug}}) {
+      postsConnection(where: { categories_some: { slug: $slug } }) {
         edges {
           cursor
           node {
@@ -222,11 +230,10 @@ export const getCategoryPost = async (slug) => {
   return result.postsConnection.edges;
 };
 
-
 export const getPages = async () => {
   const query = gql`
     query GetPages {
-      pages {
+      pages(orderBy: createdAt_DESC) {
         slug
         title
       }
@@ -236,7 +243,6 @@ export const getPages = async () => {
 
   return result.pages;
 };
-
 
 export const getPageDetails = async (slug) => {
   const query = gql`

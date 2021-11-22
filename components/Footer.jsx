@@ -18,7 +18,7 @@ const Footer = ({pages}) => {
             {pages.map((page) => (
               <li className="text-white mb-3 xl:mb-0 lg:mb-0 md:mb-0 sm:mb-0" key={page.title}>
                 <Link  href={`/${page.slug}`} area-label={page.title}>
-                  <span className="cursor-pointer text-sm md:text-base text-white md:float-right mt-2 ml-4 font-semibold hover:text-pink-500">
+                  <span className="cursor-pointer text-sm text-white md:float-right mt-2 ml-2 font-semibold hover:text-pink-500">
                     {page.title}
                   </span>
                 </Link>
@@ -27,7 +27,7 @@ const Footer = ({pages}) => {
               
               <li className="text-white mb-3 xl:mb-0 lg:mb-0 md:mb-0 sm:mb-0">
                 <Link href={"/sitemap.xml"}>
-                  <span className="cursor-pointer text-sm md:text-base text-white md:float-right mt-2 ml-4 font-semibold hover:text-pink-500">
+                  <span className="cursor-pointer text-sm text-white md:float-right mt-2 ml-4 font-semibold hover:text-pink-500">
                     Sitemap
                   </span>
                 </Link>
