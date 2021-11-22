@@ -241,7 +241,7 @@ export const getPages = async () => {
 export const getPageDetails = async (slug) => {
   const query = gql`
     query GetPageDetails($slug: String!) {
-      post(where: { slug: $slug }) {
+      page(where: { slug: $slug }) {
         slug
         title
         content {
@@ -254,5 +254,5 @@ export const getPageDetails = async (slug) => {
 
   const result = await request(graphqlAPI, query, { slug });
 
-  return result.post;
+  return result.page;
 };

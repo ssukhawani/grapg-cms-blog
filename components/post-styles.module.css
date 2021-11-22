@@ -14,7 +14,7 @@
 }
 
 .post h2 {
-  @apply md:mt-12 mb-4 text-lg md:text-2xl leading-snug font-semibold;
+  @apply md:mt-12 mb-4 text-lg md:text-2xl leading-snug font-semibold ;
 }
 
 .post h3 {
