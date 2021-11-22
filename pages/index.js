@@ -10,9 +10,6 @@ export default function Home({posts}) {
       <Head>
         <title>FrontendFreck</title>
         <link rel="icon" href="/favicon.ico" />
-        <link rel="preconnect" href="https://fonts.googleapis.com"/>
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true"/>
-        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet"></link>
         <meta name="description" content="FrontendFreck helps you to make your dev journey more exciting with cool resources"/>
         <meta property="og:url" content={process.env.SITE_URL} key="ogurl" />
         <meta property="og:site_name" content="FrontendFreck.codes" key="ogsitename" />

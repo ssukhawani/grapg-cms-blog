@@ -5,7 +5,7 @@ import Link from "next/link";
 const Footer = ({pages}) => {
 
   return (
-    <footer className="pt-16">
+    <div className="pt-16">
       <div className="w-full bg-black bg-opacity-60 py-12">
         <div className="container mx-auto xl:flex text-center xl:text-left lg:text-left">
           <div className="xl:w-3/6 sm:w-full lg:w-full text-center xl:text-left mb-6 xl:mb-0 text-sm md:text-base">
@@ -17,7 +17,7 @@ const Footer = ({pages}) => {
             <ul className="xl:flex lg:flex md:flex sm:flex justify-around">
             {pages.map((page) => (
               <li className="text-white mb-3 xl:mb-0 lg:mb-0 md:mb-0 sm:mb-0" key={page.title}>
-                <Link  href={`/${page.slug}`}>
+                <Link  href={`/${page.slug}`} area-label={page.title}>
                   <span className="cursor-pointer text-sm md:text-base text-white md:float-right mt-2 ml-4 font-semibold hover:text-pink-500">
                     {page.title}
                   </span>
@@ -36,7 +36,7 @@ const Footer = ({pages}) => {
           </div>
         </div>
       </div>
-    </footer>
+    </div>
   );
 };
 
