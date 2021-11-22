@@ -77,3 +77,49 @@ color:#333333;
 font-style: normal;
 }
 
+.ribbon,.ribbonRed{
+  width: 150px;
+  height: 150px;
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  overflow: hidden;
+}
+
+
+.ribbon::before,
+.ribbon::after,.ribbonRed::before,
+.ribbonRed::after {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: #313131;
+  z-index: -1;
+}
+
+.ribbon::after,
+.ribbonRed::after {
+  bottom: 0;
+  right: 0;
+}
+
+.ribbon span,
+.ribbonRed span {
+  @apply bg-green-tag font-bold;
+
+  position: absolute;
+  width: 220px;
+  height: 40px;
+  transform: rotate(45deg);
+  top: 40px;
+  left: -22px;
+  text-align: center;
+  line-height: 40px; /* should be same as heigh */
+}
+
+.ribbonRed span {
+  @apply bg-red-tag text-white;
+}
+
+

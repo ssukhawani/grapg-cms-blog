@@ -1,14 +1,26 @@
 import React from "react";
 import moment from "moment";
 import Link from "next/link";
-import Image from 'next/image'
+import Image from "next/image";
+import postStyles from "./post-styles.module.css";
 
 const PostCard = ({ post }) => {
   return (
-    <div className="bg-white shadow-lg rounded-lg p-2 lg:p-4 pb-4 lg:pb-5 mb-8">
+    <div className="bg-white shadow-2xl rounded-lg p-2 lg:p-4 pb-4 lg:pb-5 mb-8 relative ">
+      {post.isWorking && (
+        <div
+          className={`ribbon z-10 ${
+            post.isWorking.now === "Working"
+              ? postStyles.ribbon
+              : postStyles.ribbonRed
+          }`}
+        >
+          <span>{post.isWorking.now}</span>
+        </div>
+      )}
       <div className="relative overflow-hidden shadow-md pb-40 sm:pb-60 lg:pb-40 mb-3">
         <Image
-          src={post.featuredImage.url}  
+          src={post.featuredImage.url}
           alt={post.title}
           layout="fill"
           priority
@@ -51,11 +63,11 @@ const PostCard = ({ post }) => {
       </div>
 
       <p className="text-center text-gray-700 font-normal mb-4 text-xs sm:text-base">
-        {post.excerpt.slice(0,100)}...
+        {post.excerpt.slice(0, 100)}...
       </p>
       <div className="text-center">
         <Link href={`/post/${post.slug}`}>
-          <span className="hover:shadow-lg active:scale-90 sm:my-3 transition duration-150 text-xs sm:text-base font-bold inline-block bg-pink-600 rounded-full text-white px-8 py-3 cursor-pointer">
+          <span className="hover:shadow-lg hover:-translate-y-1 hover:bg-indigo-700 active:scale-90 sm:my-3 transition duration-150 text-xs sm:text-base font-bold inline-block bg-pink-600 rounded-full text-white px-8 py-3 cursor-pointer">
             Continue Reading...
           </span>
         </Link>

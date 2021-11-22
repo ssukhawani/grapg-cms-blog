@@ -27,6 +27,9 @@ export const getPosts = async () => {
               name
               slug
             }
+            isWorking {
+              now
+            }
           }
         }
         pageInfo {

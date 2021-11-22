@@ -85,7 +85,7 @@ const PostDetail = ({ post }) => {
             {post.downloads.length > 0 &&
               post.downloads.map((download) => (
                 <div className="text-center">
-                    <span className="hover:shadow-lg active:scale-90 my-3 transition duration-150 text-xs sm:text-base font-bold inline-block bg-pink-600 rounded-full text-white px-8 py-3 cursor-pointer">
+                    <span className="hover:shadow-xl hover:scale-95 hover:bg-indigo-700 my-3 transition duration-150 text-xs sm:text-base font-bold inline-block bg-pink-600 rounded-full text-white px-8 py-3 cursor-pointer">
                       <a target="_blank" href={download.url}>{download.title}</a>
                     </span>
                 </div>
