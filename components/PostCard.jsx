@@ -6,7 +6,7 @@ import postStyles from "./post-styles.module.css";
 
 const PostCard = ({ post }) => {
   return (
-    <div className="bg-white shadow-2xl rounded-lg p-2 lg:p-4 pb-4 lg:pb-5 mb-8 relative ">
+    <div className=" shadow-2xl rounded-lg p-2 lg:p-4 pb-4 lg:pb-5 mb-8 relative bg-white">
       {post.isWorking && (
         <div
           className={`ribbon z-10 ${
