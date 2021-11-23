@@ -1,6 +1,5 @@
 import React from "react";
 import { getPages, getPageDetails } from "../services";
-import { FeaturedPosts } from '../sections';
 import { useRouter } from 'next/router'
 import {
   PageDetail,
@@ -49,6 +48,6 @@ export async function getStaticPaths(){
 
     return{
         paths:pages.map(({slug})=>({params:{slug}})),
-        fallback:true,
+        fallback:true,  
     }
 }
