@@ -1,17 +1,24 @@
 import React from "react";
 import { getPages, getPageDetails } from "../services";
 import { useRouter } from 'next/router'
+import  NotFound  from './404'
 import {
   PageDetail,
   Categories,
   PostWidgets,
   Loader
 } from "../components";
+const pagePaths = ["/about","/terms-and-conditions","/privacy-policy","/disclaimer","/sitemap.xml"]
+
 const PageDetails = ({ page }) => {
   const router = useRouter()
 
   if(router.isFallback){
     return <Loader/>
+  }
+
+  if(!pagePaths.includes(router.asPath)){
+    return <NotFound />
   }
   
   return (

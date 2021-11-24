@@ -1,27 +1,28 @@
-import React,{useState,useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import Head from "next/head";
 import { Categories, PostCard, PostWidgets } from "../components";
-import { getPosts,getSearchPosts } from "../services";
+import { getPosts, getSearchPosts } from "../services";
 import { FeaturedPosts } from "../sections";
 import postStyles from "../components/post-styles.module.css";
 
 export default function Home({ posts }) {
-  const [searchValue, setSearchValue] = useState("")
-  const [searchResults, setSearchResults] = useState([])
+  const [searchValue, setSearchValue] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
 
-  const handelChange=(e)=>{
-    if(!Boolean(searchValue)){
-      setSearchResults([])
+  const handelChange = (e) => {
+    if (!Boolean(searchValue)) {
+      setSearchResults([]);
     }
-    setSearchValue(e.target.value)
-  }
+    setSearchValue(e.target.value);
+  };
 
-  const handelSubmit=()=>{
-    if(Boolean(searchValue)){
-      getSearchPosts(searchValue)
-      .then((newPosts) => setSearchResults(newPosts))
+  const handelSubmit = () => {
+    if (Boolean(searchValue)) {
+      getSearchPosts(searchValue).then((newPosts) =>
+        setSearchResults(newPosts)
+      );
     }
-  }
+  };
 
   const handleSubmitOnEnter = (event) => {
     if (event.key === "Enter") {
@@ -60,7 +61,10 @@ export default function Home({ posts }) {
           onChange={handelChange}
           onKeyPress={handleSubmitOnEnter}
         />
-        <button className={`searchButton ${postStyles.searchButton}`} onClick={handelSubmit}>
+        <button
+          className={`searchButton ${postStyles.searchButton}`}
+          onClick={handelSubmit}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-6 w-6"
@@ -79,15 +83,32 @@ export default function Home({ posts }) {
       </div>
       <FeaturedPosts />
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 ">
-        <div className="lg:col-span-8 col-span-1 grid grid-cols-1 lg:grid-cols-2 sm:gap-5 grid-flow-row auto-rows-max">
-          {Boolean(searchValue) && searchResults.length > 0 ? 
-              searchResults.map((post) => (
-                <PostCard post={post.node} key={post.node.title} />
-              )):
-              posts.map((post) => (
+        <div className="lg:col-span-8 col-span-1 grid grid-cols-1 lg:grid-cols-2 sm:gap-5 grid-flow-row auto-rows-max relative pb-8">
+          {Boolean(searchValue) && searchResults.length > 0
+            ? searchResults.map((post) => (
                 <PostCard post={post.node} key={post.node.title} />
               ))
-          }
+            : posts.map((post) => (
+                <PostCard post={post.node} key={post.node.title} />
+              ))}
+          <div className="flex justify-content absolute bottom-0 left-1/2  transform -translate-x-1/2 ">
+            <button
+              areal-label="Previous"
+              // disabled={!pageInfo.hasPreviousPage}
+              // onClick={handelSkipMinus}
+              className="hover:ring-2 hover:ring-offset-1 font-semibold focus:ring-white focus:ring-2 focus:ring-offset-1 hover:ring-white focus:bg-black focus:outline-none hover:scale-95  w-full sm:w-auto bg-black transition duration-150 ease-in-out  rounded text-white px-8 py-3 text-sm mt-6 m-1 disabled:bg-gray-400 disabled:text-black"
+            >
+              Previous
+            </button>
+            <button
+              areal-label="Next"
+              // disabled={!pageInfo.hasNextPage}
+              // onClick={handelSkipPlus}
+              className="hover:ring-2 hover:ring-offset-1 font-semibold hover:ring-white focus:ring-white focus:ring-2 focus:ring-offset-1 focus:bg-black focus:outline-none hover:scale-95  w-full sm:w-auto bg-black transition duration-150 ease-in-out rounded text-white px-8 py-3 text-sm mt-6 m-1 disabled:bg-gray-400 disabled:text-black"
+            >
+              Next
+            </button>
+          </div>
         </div>
 
         <div className="lg:col-span-4 col-span-1 ">
