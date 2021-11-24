@@ -265,6 +265,9 @@ export const getCategoryPost = async (slug) => {
               name
               slug
             }
+            isWorking {
+              now
+            }
           }
         }
       }
