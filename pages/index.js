@@ -1,34 +1,65 @@
 import React, { useState, useEffect } from "react";
 import Head from "next/head";
 import { Categories, PostCard, PostWidgets } from "../components";
-import { getPosts, getSearchPosts } from "../services";
+// import { getPosts, getSearchPosts } from "../services";
 import { FeaturedPosts } from "../sections";
 import postStyles from "../components/post-styles.module.css";
+import { request } from "graphql-request";
+import useSWR from "swr";
 
-export default function Home({ posts }) {
+const fetcher = (endpoint, query, variables) => request(endpoint, query, variables);
+const graphqlAPI = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT;
+
+export default function Home({ posts,pageInfo }) {
   const [searchValue, setSearchValue] = useState("");
-  const [searchResults, setSearchResults] = useState([]);
+  const [skip, setSkip] = useState(0);
+  const { data, error } = useSWR(
+    [
+      graphqlAPI,
+      `query MyQuery($searchValue:String!,$skip: Int) {
+        postsConnection(first: 6, skip: $skip, orderBy: createdAt_DESC,where:{OR:[{title_contains:$searchValue},{slug_contains:$searchValue}]}) {
+          edges {
+            node {
+              author {
+                bio
+                id
+                name
+                photo {
+                  url
+                }
+              }
+              createdAt
+              slug
+              title
+              excerpt
+              featuredImage {
+                url
+              }
+              categories {
+                name
+                slug
+              }
+              isWorking {
+                now
+              }
+            }
+          }
+          pageInfo {
+            hasNextPage
+            hasPreviousPage
+            pageSize
+          }
+        }
+      }
+      
+  `,
+      searchValue,
+      skip,
+    ],
+    (endpoint, query) => fetcher(endpoint, query, { searchValue, skip }),
+    { initialData: posts, revalidateOnFocus: true },
+  );
 
-  const handelChange = (e) => {
-    if (!Boolean(searchValue)) {
-      setSearchResults([]);
-    }
-    setSearchValue(e.target.value);
-  };
-
-  const handelSubmit = () => {
-    if (Boolean(searchValue)) {
-      getSearchPosts(searchValue).then((newPosts) =>
-        setSearchResults(newPosts)
-      );
-    }
-  };
-
-  const handleSubmitOnEnter = (event) => {
-    if (event.key === "Enter") {
-      handelSubmit();
-    }
-  };
 
   return (
     <div className="container mx-auto px-4 sm:px-10 mb-8 relative">
@@ -58,12 +89,10 @@ export default function Home({ posts }) {
           type="text"
           value={searchValue}
           placeholder="Search"
-          onChange={handelChange}
-          onKeyPress={handleSubmitOnEnter}
+          onChange={(e)=>setSearchValue(e.target.value)}
         />
         <button
           className={`searchButton ${postStyles.searchButton}`}
-          onClick={handelSubmit}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -84,26 +113,28 @@ export default function Home({ posts }) {
       <FeaturedPosts />
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 ">
         <div className="lg:col-span-8 col-span-1 grid grid-cols-1 lg:grid-cols-2 sm:gap-5 grid-flow-row auto-rows-max relative pb-8">
-          {Boolean(searchValue) && searchResults.length > 0
-            ? searchResults.map((post) => (
+            {
+             data?.postsConnection?.edges?.map((post) => (
                 <PostCard post={post.node} key={post.node.title} />
               ))
-            : posts.map((post) => (
-                <PostCard post={post.node} key={post.node.title} />
-              ))}
+            }
           <div className="flex justify-content absolute bottom-0 left-1/2  transform -translate-x-1/2 ">
             <button
               areal-label="Previous"
-              // disabled={!pageInfo.hasPreviousPage}
-              // onClick={handelSkipMinus}
+              disabled={!data?.postsConnection?.pageInfo?.hasPreviousPage}
+              onClick={() => {
+                setSkip(skip - 6);
+              }}
               className="hover:ring-2 hover:ring-offset-1 font-semibold focus:ring-white focus:ring-2 focus:ring-offset-1 hover:ring-white focus:bg-black focus:outline-none hover:scale-95  w-full sm:w-auto bg-black transition duration-150 ease-in-out  rounded text-white px-8 py-3 text-sm mt-6 m-1 disabled:bg-gray-400 disabled:text-black"
             >
               Previous
             </button>
             <button
               areal-label="Next"
-              // disabled={!pageInfo.hasNextPage}
-              // onClick={handelSkipPlus}
+              disabled={!data?.postsConnection?.pageInfo?.hasNextPage}
+              onClick={() => {
+                setSkip(skip + 6);
+              }}
               className="hover:ring-2 hover:ring-offset-1 font-semibold hover:ring-white focus:ring-white focus:ring-2 focus:ring-offset-1 focus:bg-black focus:outline-none hover:scale-95  w-full sm:w-auto bg-black transition duration-150 ease-in-out rounded text-white px-8 py-3 text-sm mt-6 m-1 disabled:bg-gray-400 disabled:text-black"
             >
               Next
@@ -123,11 +154,52 @@ export default function Home({ posts }) {
 }
 
 export async function getStaticProps() {
-  const posts = (await getPosts()) || [];
+  const posts = await fetcher(
+    graphqlAPI,
+    `
+    query MyQuery {
+      postsConnection(first: 6,skip:0, orderBy: createdAt_DESC) {
+        edges {
+          node {
+            author {
+              bio
+              id
+              name
+              photo {
+                url
+              }
+            }
+            createdAt
+            slug
+            title
+            excerpt
+            featuredImage {
+              url
+            }
+            categories {
+              name
+              slug
+            }
+            isWorking {
+              now
+            }
+          }
+        }
+        pageInfo {
+          hasNextPage
+          hasPreviousPage
+          pageSize
+        }
+      }
+    }
+    
+`,
+  );
 
   return {
     props: {
-      posts,
+      posts:posts.postsConnection.edges,
+      pageInfo:posts.postsConnection.pageInfo
     },
   };
 }

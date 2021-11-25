@@ -2,6 +2,7 @@ import { request, gql } from "graphql-request";
 
 const graphqlAPI = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT;
 
+//used in the index.js with useSWR hook for pagination and search
 export const getPosts = async () => {
   const query = gql`
     query MyQuery {
@@ -45,6 +46,7 @@ export const getPosts = async () => {
   return result.postsConnection.edges;
 };
 
+//used in the index.js with useSWR hook for pagination and search
 export const getSearchPosts = async (searchValue) => {
   const query = gql`
     query MyQuery($searchValue:String!) {
