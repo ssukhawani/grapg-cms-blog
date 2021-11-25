@@ -112,7 +112,7 @@ export default function Home({ posts,pageInfo }) {
       </div>
       <FeaturedPosts />
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 ">
-        <div className="lg:col-span-8 col-span-1 grid grid-cols-1 lg:grid-cols-2 sm:gap-5 grid-flow-row auto-rows-max relative pb-8">
+        <div className="lg:col-span-8 col-span-1 grid grid-cols-1 lg:grid-cols-2 sm:gap-5 grid-flow-row auto-rows-max relative pb-12">
             {
              data?.postsConnection?.edges?.map((post) => (
                 <PostCard post={post.node} key={post.node.title} />
@@ -146,6 +146,17 @@ export default function Home({ posts,pageInfo }) {
           <div className="lg:sticky relative top-8">
             <PostWidgets />
             <Categories />
+            <div className="bg-white rounded-lg shadow-lg p-4 sm:p-8 mb-8 pb-12 text-sm sm:text-base">
+              <h3 className="text-center text-sm sm:text-xl mb-4 sm:mb-8 font-semibold border-b border-blue-300 pb-4">
+                  How to Download?
+              </h3>
+              <iframe
+                src="https://www.youtube.com/embed/c2mva3X-Iqk?modestbranding=1&showinfo=1&rel=0"
+                title="How to Properly open or download files from Linkvertise"
+                frameborder="0"
+                allowfullscreen="allowfullscreen"
+              ></iframe>
+            </div>
           </div>
         </div>
       </div>
