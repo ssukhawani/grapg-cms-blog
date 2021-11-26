@@ -3,92 +3,101 @@ import { request, gql } from "graphql-request";
 const graphqlAPI = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT;
 
 //used in the index.js with useSWR hook for pagination and search
-export const getPosts = async () => {
-  const query = gql`
-    query MyQuery {
-      postsConnection(first: 9, orderBy: createdAt_DESC) {
-        edges {
-          node {
-            author {
-              bio
-              id
-              name
-              photo {
-                url
-              }
-            }
-            createdAt
-            slug
-            title
-            excerpt
-            featuredImage {
-              url
-            }
-            categories {
-              name
-              slug
-            }
-            isWorking {
-              now
-            }
-          }
-        }
-        pageInfo {
-          hasNextPage
-          pageSize
-        }
-      }
-    }
-  `;
+// export const getPosts = async () => {
+//   const query = gql`
+//     query MyQuery {
+//       postsConnection(first: 9, orderBy: createdAt_DESC) {
+//         edges {
+//           node {
+//             author {
+//               bio
+//               id
+//               name
+//               photo {
+//                 url
+//               }
+//             }
+//             createdAt
+//             slug
+//             title
+//             excerpt
+//             featuredImage {
+//               url
+//             }
+//             categories {
+//               name
+//               slug
+//             }
+//             isWorking {
+//               now
+//             }
+//           }
+//         }
+//         pageInfo {
+//           hasNextPage
+//           pageSize
+//         }
+//       }
+//     }
+//   `;
 
-  const result = await request(graphqlAPI, query);
+//   const result = await request(graphqlAPI, query);
 
-  return result.postsConnection.edges;
-};
+//   return result.postsConnection.edges;
+// };
 
 //used in the index.js with useSWR hook for pagination and search
-export const getSearchPosts = async (searchValue) => {
-  const query = gql`
-    query MyQuery($searchValue:String!) {
-      postsConnection(first: 9, orderBy: createdAt_DESC,where:{OR:[{title_contains:$searchValue},{slug_contains:$searchValue}]}) {
-        edges {
-          node {
-            author {
-              bio
-              id
-              name
-              photo {
-                url
-              }
-            }
-            createdAt
-            slug
-            title
-            excerpt
-            featuredImage {
-              url
-            }
-            categories {
-              name
-              slug
-            }
-            isWorking {
-              now
-            }
-          }
-        }
-        pageInfo {
-          hasNextPage
-          pageSize
-        }
-      }
-    }
-  `;
+// export const getSearchPosts = async (searchValue) => {
+//   const query = gql`
+//     query MyQuery($searchValue: String!) {
+//       postsConnection(
+//         first: 9
+//         orderBy: createdAt_DESC
+//         where: {
+//           OR: [
+//             { title_contains: $searchValue }
+//             { slug_contains: $searchValue }
+//           ]
+//         }
+//       ) {
+//         edges {
+//           node {
+//             author {
+//               bio
+//               id
+//               name
+//               photo {
+//                 url
+//               }
+//             }
+//             createdAt
+//             slug
+//             title
+//             excerpt
+//             featuredImage {
+//               url
+//             }
+//             categories {
+//               name
+//               slug
+//             }
+//             isWorking {
+//               now
+//             }
+//           }
+//         }
+//         pageInfo {
+//           hasNextPage
+//           pageSize
+//         }
+//       }
+//     }
+//   `;
 
-  const result = await request(graphqlAPI, query, { searchValue });
+//   const result = await request(graphqlAPI, query, { searchValue });
 
-  return result.postsConnection.edges;
-};
+//   return result.postsConnection.edges;
+// };
 
 export const getPostDetails = async (slug) => {
   const query = gql`
@@ -178,9 +187,12 @@ export const getSimilarPosts = async (categories, slug) => {
 export const getCategories = async () => {
   const query = gql`
     query GetCategories {
-      categories {
+      categories(orderBy: name_ASC) {
         name
         slug
+        post {
+          id
+        }
       }
     }
   `;
@@ -241,45 +253,50 @@ export const getFeaturedPosts = async () => {
   return result.posts;
 };
 
-export const getCategoryPost = async (slug) => {
-  const query = gql`
-    query GetCategoryPost($slug: String!) {
-      postsConnection(where: { categories_some: { slug: $slug } }) {
-        edges {
-          cursor
-          node {
-            author {
-              bio
-              name
-              id
-              photo {
-                url
-              }
-            }
-            createdAt
-            slug
-            title
-            excerpt
-            featuredImage {
-              url
-            }
-            categories {
-              name
-              slug
-            }
-            isWorking {
-              now
-            }
-          }
-        }
-      }
-    }
-  `;
+// export const getCategoryPost = async (slug) => {
+//   const query = gql`
+//     query GetCategoryPost($slug: String!) {
+//       postsConnection(where: { categories_some: { slug: $slug } }) {
+//         edges {
+//           cursor
+//           node {
+//             author {
+//               bio
+//               name
+//               id
+//               photo {
+//                 url
+//               }
+//             }
+//             createdAt
+//             slug
+//             title
+//             excerpt
+//             featuredImage {
+//               url
+//             }
+//             categories {
+//               name
+//               slug
+//             }
+//             isWorking {
+//               now
+//             }
+//           }
+//         }
+//         pageInfo {
+//           hasNextPage
+//           hasPreviousPage
+//           pageSize
+//         }
+//       }
+//     }
+//   `;
 
-  const result = await request(graphqlAPI, query, { slug });
+//   const result = await request(graphqlAPI, query, { slug });
 
-  return result.postsConnection.edges;
-};
+//   return result.postsConnection.edges;
+// };
 
 export const getPages = async () => {
   const query = gql`
