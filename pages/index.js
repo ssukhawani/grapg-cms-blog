@@ -154,7 +154,7 @@ export default function Home({ posts,pageInfo }) {
                 src="https://www.youtube.com/embed/c2mva3X-Iqk?modestbranding=1&showinfo=1&rel=0"
                 title="How to Properly open or download files from Linkvertise"
                 frameBorder="0"
-                allowfullscreen="allowfullscreen"
+                allowfullScreen="allowfullScreen"
               ></iframe>
             </div>
           </div>

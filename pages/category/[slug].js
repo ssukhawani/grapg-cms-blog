@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
 import { getCategories } from "../../services";
@@ -13,11 +13,18 @@ const graphqlAPI = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT;
 
 const CategoryPost = ({ posts }) => {
   const router = useRouter();
-  const {slug} = router.query
+  const { slug } = router.query;
   const [skip, setSkip] = useState(0);
   if (router.isFallback) {
     return <Loader />;
   }
+
+  useEffect(() => {
+    if (slug) {
+      setSkip(0)
+    }
+  }, [slug]);
+
 
   const { data, error } = useSWR(
     [
@@ -60,11 +67,11 @@ const CategoryPost = ({ posts }) => {
       }
       
   `,
-    slug,
-    skip,
-  ],
-    (endpoint, query) => fetcher(endpoint, query, {slug, skip }),
-    { initialData: posts, revalidateOnFocus: true },
+      slug,
+      skip,
+    ],
+    (endpoint, query) => fetcher(endpoint, query, { slug, skip }),
+    { initialData: posts, revalidateOnFocus: true }
   );
 
   return (
@@ -74,28 +81,30 @@ const CategoryPost = ({ posts }) => {
           {data?.postsConnection?.edges?.map((post, index) => (
             <PostCard key={index} post={post.node} />
           ))}
-          {posts.length > 5 && <div className="flex justify-content absolute bottom-0 left-1/2  transform -translate-x-1/2 ">
-            <button
-              areal-label="Previous"
-              disabled={!data?.postsConnection?.pageInfo?.hasPreviousPage}
-              onClick={() => {
-                setSkip(skip - 6);
-              }}
-              className="hover:ring-2 hover:ring-offset-1 font-semibold focus:ring-white focus:ring-2 focus:ring-offset-1 hover:ring-white focus:bg-black focus:outline-none hover:scale-95  w-full sm:w-auto bg-black transition duration-150 ease-in-out  rounded text-white px-8 py-3 text-sm mt-6 m-1 disabled:bg-gray-400 disabled:text-black"
-            >
-              Previous
-            </button>
-            <button
-              areal-label="Next"
-              disabled={!data?.postsConnection?.pageInfo?.hasNextPage}
-              onClick={() => {
-                setSkip(skip + 6);
-              }}
-              className="hover:ring-2 hover:ring-offset-1 font-semibold hover:ring-white focus:ring-white focus:ring-2 focus:ring-offset-1 focus:bg-black focus:outline-none hover:scale-95  w-full sm:w-auto bg-black transition duration-150 ease-in-out rounded text-white px-8 py-3 text-sm mt-6 m-1 disabled:bg-gray-400 disabled:text-black"
-            >
-              Next
-            </button>
-          </div>}
+          {posts.length > 5 && (
+            <div className="flex justify-content absolute bottom-0 left-1/2  transform -translate-x-1/2 ">
+              <button
+                areal-label="Previous"
+                disabled={!data?.postsConnection?.pageInfo?.hasPreviousPage}
+                onClick={() => {
+                  setSkip(skip - 6);
+                }}
+                className="hover:ring-2 hover:ring-offset-1 font-semibold focus:ring-white focus:ring-2 focus:ring-offset-1 hover:ring-white focus:bg-black focus:outline-none hover:scale-95  w-full sm:w-auto bg-black transition duration-150 ease-in-out  rounded text-white px-8 py-3 text-sm mt-6 m-1 disabled:bg-gray-400 disabled:text-black"
+              >
+                Previous
+              </button>
+              <button
+                areal-label="Next"
+                disabled={!data?.postsConnection?.pageInfo?.hasNextPage}
+                onClick={() => {
+                  setSkip(skip + 6);
+                }}
+                className="hover:ring-2 hover:ring-offset-1 font-semibold hover:ring-white focus:ring-white focus:ring-2 focus:ring-offset-1 focus:bg-black focus:outline-none hover:scale-95  w-full sm:w-auto bg-black transition duration-150 ease-in-out rounded text-white px-8 py-3 text-sm mt-6 m-1 disabled:bg-gray-400 disabled:text-black"
+              >
+                Next
+              </button>
+            </div>
+          )}
         </div>
         <div className="col-span-1 lg:col-span-4">
           <div className="relative lg:sticky top-8">
@@ -108,7 +117,7 @@ const CategoryPost = ({ posts }) => {
                 src="https://www.youtube.com/embed/c2mva3X-Iqk?modestbranding=1&showinfo=1&rel=0"
                 title="How to Properly open or download files from Linkvertise"
                 frameBorder="0"
-                allowfullscreen="allowfullscreen"
+                allowfullScreen="allowfullScreen"
               ></iframe>
             </div>
           </div>
@@ -161,8 +170,8 @@ export async function getStaticProps({ params }) {
     }
     
 `,
-{slug:params.slug}
-);
+    { slug: params.slug }
+  );
 
   return {
     props: {
