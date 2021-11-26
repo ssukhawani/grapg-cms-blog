@@ -7,10 +7,11 @@ import postStyles from "../components/post-styles.module.css";
 import { request } from "graphql-request";
 import useSWR from "swr";
 
-const fetcher = (endpoint, query, variables) => request(endpoint, query, variables);
+const fetcher = (endpoint, query, variables) =>
+  request(endpoint, query, variables);
 const graphqlAPI = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT;
 
-export default function Home({ posts,pageInfo }) {
+export default function Home({ posts, pageInfo }) {
   const [searchValue, setSearchValue] = useState("");
   const [skip, setSkip] = useState(0);
   const { data, error } = useSWR(
@@ -57,9 +58,8 @@ export default function Home({ posts,pageInfo }) {
       skip,
     ],
     (endpoint, query) => fetcher(endpoint, query, { searchValue, skip }),
-    { initialData: posts, revalidateOnFocus: true },
+    { initialData: posts, revalidateOnFocus: true }
   );
-
 
   return (
     <div className="container mx-auto px-4 sm:px-10 mb-8 relative">
@@ -89,11 +89,9 @@ export default function Home({ posts,pageInfo }) {
           type="text"
           value={searchValue}
           placeholder="Search"
-          onChange={(e)=>setSearchValue(e.target.value)}
+          onChange={(e) => setSearchValue(e.target.value)}
         />
-        <button
-          className={`searchButton ${postStyles.searchButton}`}
-        >
+        <button className={`searchButton ${postStyles.searchButton}`}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-6 w-6"
@@ -113,11 +111,9 @@ export default function Home({ posts,pageInfo }) {
       <FeaturedPosts />
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 ">
         <div className="lg:col-span-8 col-span-1 grid grid-cols-1 lg:grid-cols-2 sm:gap-5 grid-flow-row auto-rows-max relative pb-12">
-            {
-             data?.postsConnection?.edges?.map((post) => (
-                <PostCard post={post.node} key={post.node.title} />
-              ))
-            }
+          {data?.postsConnection?.edges?.map((post) => (
+            <PostCard post={post.node} key={post.node.title} />
+          ))}
           <div className="flex justify-content absolute bottom-0 left-1/2  transform -translate-x-1/2 ">
             <button
               areal-label="Previous"
@@ -148,13 +144,14 @@ export default function Home({ posts,pageInfo }) {
             <Categories />
             <div className="bg-white rounded-lg shadow-lg p-4 sm:p-8 mb-8 pb-12 text-sm sm:text-base">
               <h3 className="text-center text-sm sm:text-xl mb-4 sm:mb-8 font-semibold border-b border-blue-300 pb-4">
-                  How to Download?
+                How to Download?
               </h3>
               <iframe
-                src="https://www.youtube.com/embed/c2mva3X-Iqk?modestbranding=1&showinfo=1&rel=0"
+                src="https://www.youtube.com/embed/ksOTY8qlndE?modestbranding=1&showinfo=1&rel=0"
                 title="How to Properly open or download files from Linkvertise"
                 frameBorder="0"
-                allowfullScreen="allowfullScreen"
+                allowFullScreen="allowFullScreen"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               ></iframe>
             </div>
           </div>
@@ -204,13 +201,13 @@ export async function getStaticProps() {
       }
     }
     
-`,
+`
   );
 
   return {
     props: {
-      posts:posts.postsConnection.edges,
-      pageInfo:posts.postsConnection.pageInfo
+      posts: posts.postsConnection.edges,
+      pageInfo: posts.postsConnection.pageInfo,
     },
   };
 }

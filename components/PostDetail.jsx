@@ -81,11 +81,11 @@ const PostDetail = ({ post }) => {
             className={`max-w-2xl mx-auto post ${postStyles.post}`}
             dangerouslySetInnerHTML={{ __html: post.content.html }}
           />
-          <div className="mt-8">
+          <div className="mt-8 text-center">
             {post.downloads.length > 0 &&
               post.downloads.map((download) => (
-                <div className="text-center" key={download.url}>
-                    <span className="hover:shadow-xl hover:scale-95 hover:bg-indigo-700 my-1 sm:my-2 transition duration-150 text-xs sm:text-base font-bold inline-block bg-pink-600 rounded-full text-white px-8 py-3 cursor-pointer">
+                <div className="inline-block sm:m-2" key={download.url}>
+                    <span className="hover:shadow-xl hover:scale-95 hover:bg-indigo-700 m-1 sm:my-2 transition duration-150 text-xs sm:text-base font-bold inline-block bg-pink-600 rounded-full text-white px-4 py-2 sm:px-8 sm:py-3 cursor-pointer">
                       <a target="_blank" href={download.url}>{download.title}</a>
                     </span>
                 </div>

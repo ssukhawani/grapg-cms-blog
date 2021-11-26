@@ -114,10 +114,10 @@ const CategoryPost = ({ posts }) => {
                 How to Download?
               </h3>
               <iframe
-                src="https://www.youtube.com/embed/c2mva3X-Iqk?modestbranding=1&showinfo=1&rel=0"
+                src="https://www.youtube.com/embed/ksOTY8qlndE?modestbranding=1&showinfo=1&rel=0"
                 title="How to Properly open or download files from Linkvertise"
                 frameBorder="0"
-                allowfullScreen="allowfullScreen"
+                allowFullScreen="allowfullScreen"
               ></iframe>
             </div>
           </div>
