@@ -2,49 +2,49 @@ import { request, gql } from "graphql-request";
 
 const graphqlAPI = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT;
 
-//used in the index.js with useSWR hook for pagination and search
-// export const getPosts = async () => {
-//   const query = gql`
-//     query MyQuery {
-//       postsConnection(first: 9, orderBy: createdAt_DESC) {
-//         edges {
-//           node {
-//             author {
-//               bio
-//               id
-//               name
-//               photo {
-//                 url
-//               }
-//             }
-//             createdAt
-//             slug
-//             title
-//             excerpt
-//             featuredImage {
-//               url
-//             }
-//             categories {
-//               name
-//               slug
-//             }
-//             isWorking {
-//               now
-//             }
-//           }
-//         }
-//         pageInfo {
-//           hasNextPage
-//           pageSize
-//         }
-//       }
-//     }
-//   `;
+// used in the index.js with useSWR hook for pagination and search
+export const getPosts = async () => {
+  const query = gql`
+    query MyQuery {
+      postsConnection(first: 9, orderBy: createdAt_DESC) {
+        edges {
+          node {
+            author {
+              bio
+              id
+              name
+              photo {
+                url
+              }
+            }
+            createdAt
+            slug
+            title
+            excerpt
+            featuredImage {
+              url
+            }
+            categories {
+              name
+              slug
+            }
+            isWorking {
+              now
+            }
+          }
+        }
+        pageInfo {
+          hasNextPage
+          pageSize
+        }
+      }
+    }
+  `;
 
-//   const result = await request(graphqlAPI, query);
+  const result = await request(graphqlAPI, query);
 
-//   return result.postsConnection.edges;
-// };
+  return result.postsConnection.edges;
+};
 
 //used in the index.js with useSWR hook for pagination and search
 // export const getSearchPosts = async (searchValue) => {

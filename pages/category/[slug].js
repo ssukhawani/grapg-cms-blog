@@ -107,7 +107,7 @@ const CategoryPost = ({ posts }) => {
               <iframe
                 src="https://www.youtube.com/embed/c2mva3X-Iqk?modestbranding=1&showinfo=1&rel=0"
                 title="How to Properly open or download files from Linkvertise"
-                frameborder="0"
+                frameBorder="0"
                 allowfullscreen="allowfullscreen"
               ></iframe>
             </div>
