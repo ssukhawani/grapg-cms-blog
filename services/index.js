@@ -184,10 +184,10 @@ export const getSimilarPosts = async (categories, slug) => {
   return result.posts;
 };
 
-export const getCategories = async () => {
+export const getCategories = async (last) => {
   const query = gql`
-    query GetCategories {
-      categories(orderBy: name_ASC) {
+    query GetCategories($last:Int!) {
+      categories(orderBy: name_ASC, last:$last) {
         name
         slug
         post {
@@ -196,7 +196,7 @@ export const getCategories = async () => {
       }
     }
   `;
-  const result = await request(graphqlAPI, query);
+  const result = await request(graphqlAPI, query,{last});
 
   return result.categories;
 };
