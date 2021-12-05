@@ -33,17 +33,6 @@ const PostDetails = ({ post }) => {
               categories={post.categories.map((category) => category.slug)}
             />
             <Categories />
-            <div className="bg-white rounded-lg shadow-lg p-4 sm:p-8 mb-8 pb-12 text-sm sm:text-base">
-              <h3 className="text-center text-sm sm:text-xl mb-4 sm:mb-8 font-semibold border-b border-blue-300 pb-4">
-                  How to Download?
-              </h3>
-              <iframe
-                src="https://www.youtube.com/embed/ksOTY8qlndE?modestbranding=1&showinfo=1&rel=0"
-                title="How to Properly open or download files from Linkvertise"
-                frameBorder="0"
-                allowFullScreen="allowfullScreen"
-              ></iframe>
-            </div>
           </div>
         </div>
       </div>
