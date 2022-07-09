@@ -31,6 +31,8 @@ const PostDetail = ({ post }) => {
           content={post.content.text.slice(0, 250)}
           key="ogdesc"
         />
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2093009960356176"
+     crossorigin="anonymous"></script>
       </Head>
       <div className="bg-white shadow-lg rounded-lg lg:p-8 pb-12 mb-8">
         <div className="relative overflow-hidden shadow-md mb-2 md:mb-6">

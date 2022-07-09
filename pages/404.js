@@ -9,6 +9,8 @@ const NotFound = () => {
       <Head>
         <title>404</title>
         <meta name="description" content={"not found"} />
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2093009960356176"
+     crossorigin="anonymous"></script>
       </Head>
       <div className="flex items-center justify-center">
         <div className="bg-white border rounded-md flex items-center justify-center mx-4 md:w-2/3">

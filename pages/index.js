@@ -82,6 +82,8 @@ export default function Home({ posts, pageInfo }) {
           content="FrontendFreck helps you to make your dev journey more exciting with cool resources"
           key="ogdesc"
         />
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2093009960356176"
+     crossorigin="anonymous"></script>
       </Head>
       <div className={`searchBox ${postStyles.searchBox}`}>
         <input
