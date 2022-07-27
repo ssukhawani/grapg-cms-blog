@@ -6,6 +6,7 @@ import { FeaturedPosts } from "../sections";
 import postStyles from "../components/post-styles.module.css";
 import { request } from "graphql-request";
 import useSWR from "swr";
+import { AdsContainer } from "../components/AdsContainer";
 
 const fetcher = (endpoint, query, variables) =>
   request(endpoint, query, variables);
@@ -82,8 +83,11 @@ export default function Home({ posts, pageInfo }) {
           content="FrontendFreck helps you to make your dev journey more exciting with cool resources"
           key="ogdesc"
         />
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2093009960356176"
-     crossorigin="anonymous"></script>
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2093009960356176"
+          crossorigin="anonymous"
+        ></script>
       </Head>
       <div className={`searchBox ${postStyles.searchBox}`}>
         <input
@@ -116,6 +120,11 @@ export default function Home({ posts, pageInfo }) {
           {data?.postsConnection?.edges?.map((post) => (
             <PostCard post={post.node} key={post.node.title} />
           ))}
+          <AdsContainer
+            client={"ca-pub-2093009960356176"}
+            slot={"6096288180"}
+          />
+
           <div className="flex justify-content absolute bottom-0 left-1/2  transform -translate-x-1/2 ">
             <button
               areal-label="Previous"

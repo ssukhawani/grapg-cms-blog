@@ -6,6 +6,7 @@ import { PostCard, Categories, Loader } from "../../components";
 
 import { request } from "graphql-request";
 import useSWR from "swr";
+import { AdsContainer } from "../../components/AdsContainer";
 
 const fetcher = (endpoint, query, variables) =>
   request(endpoint, query, variables);
@@ -21,10 +22,9 @@ const CategoryPost = ({ posts }) => {
 
   useEffect(() => {
     if (slug) {
-      setSkip(0)
+      setSkip(0);
     }
   }, [slug]);
-
 
   const { data, error } = useSWR(
     [
@@ -76,11 +76,16 @@ const CategoryPost = ({ posts }) => {
 
   return (
     <div className="container mx-auto px-4 sm:px-10 mb-8 relative ">
+      <AdsContainer client={"ca-pub-2093009960356176"} slot={"6096288180"} />
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
         <div className="lg:col-span-8 col-span-1 grid grid-cols-1 lg:grid-cols-2 sm:gap-5 grid-flow-row auto-rows-max relative pb-12">
           {data?.postsConnection?.edges?.map((post, index) => (
             <PostCard key={index} post={post.node} />
           ))}
+          <AdsContainer
+            client={"ca-pub-2093009960356176"}
+            slot={"6096288180"}
+          />
           {posts.length > 5 && (
             <div className="flex justify-content absolute bottom-0 left-1/2  transform -translate-x-1/2 ">
               <button

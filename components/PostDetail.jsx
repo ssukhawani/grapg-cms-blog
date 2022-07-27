@@ -3,6 +3,7 @@ import moment from "moment";
 import postStyles from "./post-styles.module.css";
 import Head from "next/head";
 import Link from "next/link";
+import { AdsContainer } from "./AdsContainer";
 
 const PostDetail = ({ post }) => {
   return (
@@ -31,10 +32,14 @@ const PostDetail = ({ post }) => {
           content={post.content.text.slice(0, 250)}
           key="ogdesc"
         />
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2093009960356176"
-     crossorigin="anonymous"></script>
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2093009960356176"
+          crossorigin="anonymous"
+        ></script>
       </Head>
       <div className="bg-white shadow-lg rounded-lg lg:p-8 pb-12 mb-8">
+        <AdsContainer client={"ca-pub-2093009960356176"} slot={"6096288180"} />
         <div className="relative overflow-hidden shadow-md mb-2 md:mb-6">
           <img
             src={post.featuredImage.url}
@@ -79,17 +84,27 @@ const PostDetail = ({ post }) => {
           <h1 className="mb-8 text-xl md:text-3xl font-semibold text-center">
             {post.title}
           </h1>
+          <AdsContainer
+            client={"ca-pub-2093009960356176"}
+            slot={"6096288180"}
+          />
           <div
             className={`max-w-2xl mx-auto post ${postStyles.post}`}
             dangerouslySetInnerHTML={{ __html: post.content.html }}
+          />
+          <AdsContainer
+            client={"ca-pub-2093009960356176"}
+            slot={"6096288180"}
           />
           <div className="mt-8 text-center">
             {post.downloads.length > 0 &&
               post.downloads.map((download) => (
                 <div className="inline-block sm:m-2" key={download.url}>
-                    <span className="hover:shadow-xl hover:scale-95 hover:bg-indigo-700 m-1 sm:my-2 transition duration-150 text-xs sm:text-base font-bold inline-block bg-pink-600 rounded-full text-white px-4 py-2 sm:px-8 sm:py-3 cursor-pointer">
-                      <a target="_blank" href={download.url}>{download.title}</a>
-                    </span>
+                  <span className="hover:shadow-xl hover:scale-95 hover:bg-indigo-700 m-1 sm:my-2 transition duration-150 text-xs sm:text-base font-bold inline-block bg-pink-600 rounded-full text-white px-4 py-2 sm:px-8 sm:py-3 cursor-pointer">
+                    <a target="_blank" href={download.url}>
+                      {download.title}
+                    </a>
+                  </span>
                 </div>
               ))}
           </div>
