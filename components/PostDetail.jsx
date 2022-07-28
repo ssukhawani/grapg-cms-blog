@@ -35,11 +35,15 @@ const PostDetail = ({ post }) => {
         <script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2093009960356176"
-          crossorigin="anonymous"
+          crossOrigin="anonymous"
         ></script>
       </Head>
       <div className="bg-white shadow-lg rounded-lg lg:p-8 pb-12 mb-8">
-        <AdsContainer client={"ca-pub-2093009960356176"} slot={"6096288180"} />
+        <AdsContainer
+          client={"ca-pub-2093009960356176"}
+          slot={"6096288180"}
+          adFormat={"auto"}
+        />
         <div className="relative overflow-hidden shadow-md mb-2 md:mb-6">
           <img
             src={post.featuredImage.url}
@@ -87,6 +91,7 @@ const PostDetail = ({ post }) => {
           <AdsContainer
             client={"ca-pub-2093009960356176"}
             slot={"6096288180"}
+            adFormat={"auto"}
           />
           <div
             className={`max-w-2xl mx-auto post ${postStyles.post}`}
@@ -95,6 +100,7 @@ const PostDetail = ({ post }) => {
           <AdsContainer
             client={"ca-pub-2093009960356176"}
             slot={"6096288180"}
+            adFormat={"auto"}
           />
           <div className="mt-8 text-center">
             {post.downloads.length > 0 &&

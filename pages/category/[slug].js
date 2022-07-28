@@ -76,15 +76,27 @@ const CategoryPost = ({ posts }) => {
 
   return (
     <div className="container mx-auto px-4 sm:px-10 mb-8 relative ">
-      <AdsContainer client={"ca-pub-2093009960356176"} slot={"6096288180"} />
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
         <div className="lg:col-span-8 col-span-1 grid grid-cols-1 lg:grid-cols-2 sm:gap-5 grid-flow-row auto-rows-max relative pb-12">
-          {data?.postsConnection?.edges?.map((post, index) => (
-            <PostCard key={index} post={post.node} />
-          ))}
+          {data?.postsConnection?.edges?.map((post, index) => {
+            if (index % 3 === 0) {
+              return (
+                <>
+                  <PostCard key={index} post={post.node} />
+                  <AdsContainer
+                    client={"ca-pub-2093009960356176"}
+                    slot={"6096288180"}
+                    adFormat={"auto"}
+                  />
+                </>
+              );
+            }
+            return <PostCard key={index} post={post.node} />;
+          })}
           <AdsContainer
             client={"ca-pub-2093009960356176"}
             slot={"6096288180"}
+            adFormat={"auto"}
           />
           {posts.length > 5 && (
             <div className="flex justify-content absolute bottom-0 left-1/2  transform -translate-x-1/2 ">
@@ -110,9 +122,20 @@ const CategoryPost = ({ posts }) => {
               </button>
             </div>
           )}
+
+          <AdsContainer
+            client={"ca-pub-2093009960356176"}
+            slot={"6341267557"}
+            adFormat={"autorelaxed"}
+          />
         </div>
         <div className="col-span-1 lg:col-span-4">
           <div className="relative lg:sticky top-8">
+            <AdsContainer
+              client={"ca-pub-2093009960356176"}
+              slot={"6096288180"}
+              adFormat={"auto"}
+            />
             <Categories />
           </div>
         </div>

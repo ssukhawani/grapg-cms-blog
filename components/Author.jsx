@@ -5,7 +5,11 @@ import { AdsContainer } from "./AdsContainer";
 const Author = ({ author }) => {
   return (
     <div className="text-center mt-20 mb-8 p-12 relative rounded-lg bg-black bg-opacity-60">
-      <AdsContainer client={"ca-pub-2093009960356176"} slot={"6096288180"} />
+      <AdsContainer
+        client={"ca-pub-2093009960356176"}
+        slot={"6096288180"}
+        adFormat={"auto"}
+      />
       <div className="absolute left-0 right-0 -top-14">
         <Image
           alt={author.name}

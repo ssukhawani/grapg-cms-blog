@@ -86,7 +86,7 @@ export default function Home({ posts, pageInfo }) {
         <script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2093009960356176"
-          crossorigin="anonymous"
+          crossOrigin="anonymous"
         ></script>
       </Head>
       <div className={`searchBox ${postStyles.searchBox}`}>
@@ -114,18 +114,37 @@ export default function Home({ posts, pageInfo }) {
           </svg>
         </button>
       </div>
-      {!searchValue && <FeaturedPosts />}
+      {!searchValue && <FeaturedPosts fromHome />}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 ">
         <div className="lg:col-span-8 col-span-1 grid grid-cols-1 lg:grid-cols-2 sm:gap-5 grid-flow-row auto-rows-max relative pb-12">
-          {data?.postsConnection?.edges?.map((post) => (
-            <PostCard post={post.node} key={post.node.title} />
-          ))}
+          {data?.postsConnection?.edges?.map((post, ind) => {
+            if (ind % 3 === 0) {
+              return (
+                <>
+                  <PostCard post={post.node} key={post.node.title} />
+                  <AdsContainer
+                    client={"ca-pub-2093009960356176"}
+                    slot={"6096288180"}
+                    adFormat={"auto"}
+                  />
+                </>
+              );
+            }
+            return <PostCard post={post.node} key={post.node.title} />;
+          })}
+
           <AdsContainer
             client={"ca-pub-2093009960356176"}
             slot={"6096288180"}
+            adFormat={"auto"}
+          />
+          <AdsContainer
+            client={"ca-pub-2093009960356176"}
+            slot={"6096288180"}
+            adFormat={"auto"}
           />
 
-          <div className="flex justify-content absolute bottom-0 left-1/2  transform -translate-x-1/2 ">
+          <div className="my-2 flex justify-content absolute bottom-0 left-1/2  transform -translate-x-1/2 ">
             <button
               areal-label="Previous"
               disabled={!data?.postsConnection?.pageInfo?.hasPreviousPage}

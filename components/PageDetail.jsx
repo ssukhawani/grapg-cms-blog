@@ -12,18 +12,31 @@ const PageDetail = ({ page }) => {
         <script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2093009960356176"
-          crossorigin="anonymous"
+          crossOrigin="anonymous"
         ></script>
       </Head>
       <div className="bg-white shadow-lg rounded-lg lg:p-8 pb-12 mb-8">
-        <AdsContainer client={"ca-pub-2093009960356176"} slot={"6096288180"} />
+        <AdsContainer
+          client={"ca-pub-2093009960356176"}
+          slot={"6096288180"}
+          adFormat={"auto"}
+        />
         <div className="px-4 py-4 sm:py-2 lg:px-0">
           <div
             className={`max-w-2xl mx-auto post ${postStyles.post}`}
             dangerouslySetInnerHTML={{ __html: page.content.html }}
           />
         </div>
-        <AdsContainer client={"ca-pub-2093009960356176"} slot={"6096288180"} />
+        <AdsContainer
+          client={"ca-pub-2093009960356176"}
+          slot={"6096288180"}
+          adFormat={"auto"}
+        />
+        <AdsContainer
+          client={"ca-pub-2093009960356176"}
+          slot={"6341267557"}
+          adFormat={"autorelaxed"}
+        />
       </div>
     </>
   );

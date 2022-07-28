@@ -9,7 +9,7 @@ function MyApp({ Component, pageProps }) {
     <>
       <Script
         id="adsenseId"
-        async="true"
+        async={true}
         strategy="beforeInteractive"
         onError={(e) => {
           console.error("Script failed to load", e);

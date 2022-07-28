@@ -1,16 +1,20 @@
 import React from "react";
 import Head from "next/head";
-import { useRouter } from 'next/router'
+import { useRouter } from "next/router";
+import { AdsContainer } from "../components/AdsContainer";
 
 const NotFound = () => {
-    const router = useRouter()
+  const router = useRouter();
   return (
     <>
       <Head>
         <title>404</title>
         <meta name="description" content={"not found"} />
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2093009960356176"
-     crossorigin="anonymous"></script>
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2093009960356176"
+          crossOrigin="anonymous"
+        ></script>
       </Head>
       <div className="flex items-center justify-center">
         <div className="bg-white border rounded-md flex items-center justify-center mx-4 md:w-2/3">
@@ -29,7 +33,10 @@ const NotFound = () => {
             <p className="px-4 pb-10 text-base leading-none text-center text-gray-600">
               No signal here! we cannot find the page you are looking for
             </p>
-            <button className="mx-4 h-10 w-44 border rounded-md text-white text-base bg-indigo-700 hover:bg-indigo-800 focus:outline-none focus:ring-2 focus:ring-opacity-50 focus:ring-indigo-800" onClick={()=>router.push('/')}>
+            <button
+              className="mx-4 h-10 w-44 border rounded-md text-white text-base bg-indigo-700 hover:bg-indigo-800 focus:outline-none focus:ring-2 focus:ring-opacity-50 focus:ring-indigo-800"
+              onClick={() => router.push("/")}
+            >
               Go Back
             </button>
           </div>

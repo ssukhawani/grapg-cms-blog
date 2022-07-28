@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import moment from "moment";
 import Link from "next/link";
-import Image from 'next/image'
+import Image from "next/image";
 
 import { getRecentPosts, getSimilarPosts } from "../services";
+import { AdsContainer } from "./AdsContainer";
 
 const PostWidgets = ({ categories, slug }) => {
   const [relatedPosts, setRelatedPosts] = useState([]);
@@ -22,26 +23,34 @@ const PostWidgets = ({ categories, slug }) => {
         {slug ? "Related Posts" : "Recent Posts"}
       </h2>
       {relatedPosts.map((post) => (
-        <div key={post.title} className="flex items-center w-full mb-4">
-          <div className="w-16 flex-none">
-            <Image
-              unoptimized
-              alt={post.title}
-              height="60px"
-              width="60px"
-              className="align-middle rounded-lg"
-              src={post.featuredImage.url}
-            />
+        <>
+          <AdsContainer
+            client={"ca-pub-2093009960356176"}
+            slot={"4225421868"}
+            adFormat={"fluid"}
+            data-ad-layout-key="-gw-3+1f-3d+2z"
+          />
+          <div key={post.title} className="flex items-center w-full mb-4">
+            <div className="w-16 flex-none">
+              <Image
+                unoptimized
+                alt={post.title}
+                height="60px"
+                width="60px"
+                className="align-middle rounded-lg"
+                src={post.featuredImage.url}
+              />
+            </div>
+            <div className="flex-grow ml-4 text-sm sm:text-base">
+              <p className="text-gray-500 text-xs sm:text-base">
+                {moment(post.createdAt).format("MMM DD, YYYY")}
+              </p>
+              <Link href={`/post/${post.slug}`}>
+                <a className="hover:text-pink-500">{post.title}</a>
+              </Link>
+            </div>
           </div>
-          <div className="flex-grow ml-4 text-sm sm:text-base">
-            <p className="text-gray-500 text-xs sm:text-base">
-              {moment(post.createdAt).format("MMM DD, YYYY")}
-            </p>
-            <Link href={`/post/${post.slug}`}>
-              <a className="hover:text-pink-500">{post.title}</a>
-            </Link>
-          </div>
-        </div>
+        </>
       ))}
     </div>
   );
