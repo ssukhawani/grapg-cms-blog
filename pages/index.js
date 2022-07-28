@@ -182,6 +182,11 @@ export default function Home({ posts, pageInfo }) {
           </div>
         </div>
       </div>
+      <AdsContainer
+        client={"ca-pub-2093009960356176"}
+        slot={"6341267557"}
+        adFormat={"autorelaxed"}
+      />
     </div>
   );
 }

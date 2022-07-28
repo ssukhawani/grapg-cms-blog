@@ -10,6 +10,7 @@ import {
   CommentForm,
   Loader,
 } from "../../components";
+import { AdsContainer } from "../../components/AdsContainer";
 const PostDetails = ({ post }) => {
   const router = useRouter();
 
@@ -36,6 +37,11 @@ const PostDetails = ({ post }) => {
           </div>
         </div>
       </div>
+      <AdsContainer
+        client={"ca-pub-2093009960356176"}
+        slot={"6341267557"}
+        adFormat={"autorelaxed"}
+      />
     </div>
   );
 };

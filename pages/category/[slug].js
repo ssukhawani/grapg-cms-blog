@@ -139,12 +139,6 @@ const CategoryPost = ({ posts }) => {
                 </button>
               </div>
             )}
-
-            <AdsContainer
-              client={"ca-pub-2093009960356176"}
-              slot={"6341267557"}
-              adFormat={"autorelaxed"}
-            />
           </div>
           <div className="col-span-1 lg:col-span-4">
             <div className="relative lg:sticky top-8">
@@ -157,6 +151,11 @@ const CategoryPost = ({ posts }) => {
             </div>
           </div>
         </div>
+        <AdsContainer
+          client={"ca-pub-2093009960356176"}
+          slot={"6341267557"}
+          adFormat={"autorelaxed"}
+        />
       </div>
     </>
   );
