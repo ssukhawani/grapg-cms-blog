@@ -122,11 +122,18 @@ export default function Home({ posts, pageInfo }) {
               return (
                 <>
                   <PostCard post={post.node} key={post.node.title} />
-                  <AdsContainer
-                    client={"ca-pub-2093009960356176"}
-                    slot={"6096288180"}
-                    adFormat={"auto"}
-                  />
+                  <div>
+                    <AdsContainer
+                      client={"ca-pub-2093009960356176"}
+                      slot={"6096288180"}
+                      adFormat={"auto"}
+                    />
+                    <AdsContainer
+                      client={"ca-pub-2093009960356176"}
+                      slot={"6096288180"}
+                      adFormat={"auto"}
+                    />
+                  </div>
                 </>
               );
             }
