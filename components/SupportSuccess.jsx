@@ -20,7 +20,7 @@ export default function SupportSuccess({ setFlag, onFinish }) {
           <div className="border rounded-lg border-gray-200 dark:border-gray-900 dark:bg-gray-900 bg-white pt-2 px-2 pb-8 mt-4 mb-6">
             <p className="text-xs text-gray-600 dark:text-gray-400 font-normal text-center">
               You will be redirected to your destination <br /> in{" "}
-              <Timer seconds={15} onFinish={onFinish} /> seconds
+              <Timer seconds={20} onFinish={onFinish} /> seconds
             </p>
           </div>
           <div

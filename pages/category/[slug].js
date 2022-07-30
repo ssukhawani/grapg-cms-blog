@@ -89,9 +89,9 @@ const CategoryPost = ({ posts }) => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
           <div className="lg:col-span-8 col-span-1 grid grid-cols-1 lg:grid-cols-2 sm:gap-5 grid-flow-row auto-rows-max relative pb-12">
             {data?.postsConnection?.edges?.map((post, index) => {
-              if (index % 3 === 0) {
-                return (
-                  <>
+              // if (index % 2 === 0) {
+                return ( 
+                  <div eyk={index+post.node.slug}>
                     <PostCard key={index} post={post.node} />
                     <div>
                       <AdsContainer
@@ -105,10 +105,10 @@ const CategoryPost = ({ posts }) => {
                         adFormat={"auto"}
                       />
                     </div>
-                  </>
+                  </div>
                 );
-              }
-              return <PostCard key={index} post={post.node} />;
+              // }
+              // return <PostCard key={index} post={post.node} />;
             })}
             <AdsContainer
               client={"ca-pub-2093009960356176"}

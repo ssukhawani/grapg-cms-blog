@@ -11,8 +11,18 @@ import {
   Loader,
 } from "../../components";
 import { AdsContainer } from "../../components/AdsContainer";
+import { BLACK_LIST_DMCA } from "../../constants/dmca-list";
 const PostDetails = ({ post }) => {
   const router = useRouter();
+
+  if(BLACK_LIST_DMCA.includes(router.asPath)){
+    router.push({
+      pathname: '/',
+      state:{
+        lookingFor:router.asPath
+      },
+    })
+  } 
 
   if (router.isFallback) {
     return <Loader />;

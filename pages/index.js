@@ -118,9 +118,9 @@ export default function Home({ posts, pageInfo }) {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 ">
         <div className="lg:col-span-8 col-span-1 grid grid-cols-1 lg:grid-cols-2 sm:gap-5 grid-flow-row auto-rows-max relative pb-12">
           {data?.postsConnection?.edges?.map((post, ind) => {
-            if (ind % 3 === 0) {
+            // if (ind % 3 === 0) {
               return (
-                <>
+                <div key={post.node.title+ind}>
                   <PostCard post={post.node} key={post.node.title} />
                   <div>
                     <AdsContainer
@@ -134,10 +134,10 @@ export default function Home({ posts, pageInfo }) {
                       adFormat={"auto"}
                     />
                   </div>
-                </>
+                </div>
               );
-            }
-            return <PostCard post={post.node} key={post.node.title} />;
+            // }
+            // return <PostCard post={post.node} key={post.node.title} />;
           })}
 
           <AdsContainer
