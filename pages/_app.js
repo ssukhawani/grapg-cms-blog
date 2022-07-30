@@ -3,6 +3,7 @@ import { Layout } from "../components";
 import Script from "next/script";
 
 import "../styles/globals.scss";
+import "react-responsive-modal/styles.css";
 
 function MyApp({ Component, pageProps }) {
   return (

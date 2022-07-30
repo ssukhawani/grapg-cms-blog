@@ -1,11 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 import moment from "moment";
 import postStyles from "./post-styles.module.css";
 import Head from "next/head";
-import Link from "next/link";
 import { AdsContainer } from "./AdsContainer";
+import { Modal } from "react-responsive-modal";
+import SupportSuccess from "./SupportSuccess";
 
 const PostDetail = ({ post }) => {
+
+  const [flag, setFlag] = useState(false);
+  const [redirectUrl, setRedirectUrl] = useState("");
+
+  const onFinish = () => {
+    window.open(redirectUrl);
+    setFlag(false);
+  };
+
+  const checkForLinkValidation = (finalRedirectUrl) => {
+    let link = prompt(
+      "Click On any Ads, Copy Ad Url & put it here To Support this Forum: "
+    );
+    if (link && link.length > 900 && link.startsWith("https://www.googleadservices.com/pagead/aclk?sa=L&ai=")) {
+      setRedirectUrl(finalRedirectUrl);
+      setFlag(true);
+    } else {
+      alert("Try Again! here only valid urls are allowed");
+    }
+  };
+
   return (
     <>
       <Head>
@@ -106,16 +128,39 @@ const PostDetail = ({ post }) => {
             {post.downloads.length > 0 &&
               post.downloads.map((download) => (
                 <div className="inline-block sm:m-2" key={download.url}>
-                  <span className="hover:shadow-xl hover:scale-95 hover:bg-indigo-700 m-1 sm:my-2 transition duration-150 text-xs sm:text-base font-bold inline-block bg-pink-600 rounded-full text-white px-4 py-2 sm:px-8 sm:py-3 cursor-pointer">
-                    <a target="_blank" href={download.url}>
-                      {download.title}
-                    </a>
+                  <span
+                    onClick={() => checkForLinkValidation(download.url)}
+                    className="hover:shadow-xl hover:scale-95 hover:bg-indigo-700 m-1 sm:my-2 transition duration-150 text-xs sm:text-base font-bold inline-block bg-pink-600 rounded-full text-white px-4 py-2 sm:px-8 sm:py-3 cursor-pointer"
+                  >
+                    {download.title}
                   </span>
                 </div>
               ))}
           </div>
         </div>
       </div>
+      {flag && (
+        <Modal
+          classNames={{
+            overlayAnimationIn: 'customEnterOverlayAnimation',
+            overlayAnimationOut: 'customLeaveOverlayAnimation',
+            modalAnimationIn: 'customEnterModalAnimation',
+            modalAnimationOut: 'customLeaveModalAnimation',
+          }}
+          animationDuration={500}
+          open={flag}
+          onClose={() => setFlag(false)}
+          showCloseIcon={false}
+          styles={{
+            modal: {
+              background: "#FFFF00",
+              borderRadius:"20px"
+            }
+          }}
+        >
+          <SupportSuccess setFlag={setFlag} onFinish={onFinish} />
+        </Modal>
+      )}
     </>
   );
 };

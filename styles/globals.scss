@@ -89,3 +89,44 @@ a {
 ::-webkit-scrollbar-thumb:horizontal:hover {
   background: #DC4A78; 
 }
+
+.customOverlay {
+  background: rgba(0, 0, 0, 0.2);
+}
+.customModal {
+  background: #b2dbbf;
+}
+
+@keyframes customEnterOverlayAnimation {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes customLeaveOverlayAnimation {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+
+@keyframes customEnterModalAnimation {
+  0% {
+    transform: scale(0.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes customLeaveModalAnimation {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0.2);
+  }
+}

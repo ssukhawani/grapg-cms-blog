@@ -22,8 +22,8 @@ const PostWidgets = ({ categories, slug }) => {
       <h2 className="text-center text-sm sm:text-xl mb-4 sm:mb-8 font-semibold border-b border-blue-300 pb-4">
         {slug ? "Related Posts" : "Recent Posts"}
       </h2>
-      {relatedPosts.map((post) => (
-        <>
+      {relatedPosts.map((post,ind) => (
+        <div key={ind+post.slug}>
           <AdsContainer
             client={"ca-pub-2093009960356176"}
             slot={"4225421868"}
@@ -50,7 +50,7 @@ const PostWidgets = ({ categories, slug }) => {
               </Link>
             </div>
           </div>
-        </>
+        </div>
       ))}
     </div>
   );
