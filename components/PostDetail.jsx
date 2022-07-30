@@ -20,7 +20,7 @@ const PostDetail = ({ post }) => {
     let link = prompt(
       "Click On any Ads, Copy Ad Url & put it here To Support this Forum: "
     );
-    if (link && link.length > 900 && link.startsWith("https://www.googleadservices.com/pagead/aclk?sa=L&ai=")) {
+    if (link && link.length > 100 && link.includes("https",0) && link.includes("gclid=")) {
       setRedirectUrl(finalRedirectUrl);
       setFlag(true);
     } else {
