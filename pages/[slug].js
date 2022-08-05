@@ -5,7 +5,7 @@ import NotFound from "./404";
 import { PageDetail, Categories, PostWidgets, Loader } from "../components";
 import { AdsContainer } from "../components/AdsContainer";
 import { DOWNLOAD_LIST_EXT } from "../constants/downloadList";
-import Head from "next/head";
+import Script from "next/script";
 const pagePaths = [
   "/about",
   "/terms-and-conditions",
@@ -43,13 +43,15 @@ const PageDetails = ({ page }) => {
 
   return (
     <>
-      <Head>
-        <script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2093009960356176"
-          crossOrigin="anonymous"
-        ></script>
-      </Head>
+      <Script
+        id="adsenseId"
+        async={true}
+        strategy="beforeInteractive"
+        onError={(e) => {
+          console.error("Script failed to load", e);
+        }}
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2093009960356176"
+      />
       <div className="container mx-auto px-4 sm:px-10 mb-8 ">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
           <div className="col-span-1 lg:col-span-8">
