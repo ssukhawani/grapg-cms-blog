@@ -1,9 +1,42 @@
-import React from "react";
+import React, { useState } from "react";
 import postStyles from "./post-styles.module.css";
 import Head from "next/head";
 import { AdsContainer } from "./AdsContainer";
+import Timer from "./Timer";
+import SupportSuccess from "./SupportSuccess";
+import Modal from "react-responsive-modal";
 
-const PageDetail = ({ page }) => {
+const PageDetail = ({ page, url }) => {
+  const [showDownload, setShowDownload] = useState(false);
+  const [flag, setFlag] = useState(false);
+
+  const onFinishTimer = (when) => {
+    if (when === "initial") {
+      setShowDownload(true);
+    } else {
+      if (!!url) {
+        window.open(url);
+        setFlag(false);
+      }
+    }
+  };
+
+  const checkForLinkValidation = () => {
+    let link = prompt(
+      "Click On any Ads, Copy Ad Url & put it here To Support this Forum: "
+    );
+    if (
+      link &&
+      link.length > 100 &&
+      link.includes("https", 0) &&
+      link.includes("gclid=")
+    ) {
+      setFlag(true);
+    } else {
+      alert("Try Again! here only valid urls are allowed");
+    }
+  };
+
   return (
     <>
       <Head>
@@ -27,6 +60,24 @@ const PageDetail = ({ page }) => {
             dangerouslySetInnerHTML={{ __html: page.content.html }}
           />
         </div>
+        {url && (
+          <div className="py-4 text-center">
+            {showDownload ? (
+              <span
+                onClick={checkForLinkValidation}
+                className="hover:shadow-xl hover:scale-95 hover:bg-indigo-700 m-1 sm:my-2 transition duration-150 text-xs sm:text-base font-bold inline-block bg-pink-600 rounded-full text-white px-4 py-2 sm:px-8 sm:py-3 cursor-pointer"
+              >
+                Download..
+              </span>
+            ) : (
+              <p className="text-md text-gray-600 dark:text-gray-400 font-normal text-center">
+                Your download link is getting generated <br /> in{" "}
+                <Timer seconds={20} onFinish={() => onFinishTimer("initial")} />{" "}
+                seconds
+              </p>
+            )}
+          </div>
+        )}
         <AdsContainer
           client={"ca-pub-2093009960356176"}
           slot={"6096288180"}
@@ -38,6 +89,31 @@ const PageDetail = ({ page }) => {
           adFormat={"autorelaxed"}
         />
       </div>
+      {flag && (
+        <Modal
+          classNames={{
+            overlayAnimationIn: "customEnterOverlayAnimation",
+            overlayAnimationOut: "customLeaveOverlayAnimation",
+            modalAnimationIn: "customEnterModalAnimation",
+            modalAnimationOut: "customLeaveModalAnimation",
+          }}
+          animationDuration={500}
+          open={flag}
+          onClose={() => setFlag(false)}
+          showCloseIcon={false}
+          styles={{
+            modal: {
+              background: "#FFFF00",
+              borderRadius: "20px",
+            },
+          }}
+        >
+          <SupportSuccess
+            setFlag={setFlag}
+            onFinish={() => onFinishTimer("final")}
+          />
+        </Modal>
+      )}
     </>
   );
 };

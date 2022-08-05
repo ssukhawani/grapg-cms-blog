@@ -5,22 +5,32 @@ import Head from "next/head";
 import { AdsContainer } from "./AdsContainer";
 import { Modal } from "react-responsive-modal";
 import SupportSuccess from "./SupportSuccess";
+import Timer from "./Timer";
 
 const PostDetail = ({ post }) => {
-
   const [flag, setFlag] = useState(false);
   const [redirectUrl, setRedirectUrl] = useState("");
+  const [showDownload, setShowDownload] = useState(false);
 
-  const onFinish = () => {
-    window.open(redirectUrl);
-    setFlag(false);
+  const onFinish = (when) => {
+    if (when === "initial") {
+      setShowDownload(true);
+    } else {
+      window.open(redirectUrl);
+      setFlag(false);
+    }
   };
 
   const checkForLinkValidation = (finalRedirectUrl) => {
     let link = prompt(
       "Click On any Ads, Copy Ad Url & put it here To Support this Forum: "
     );
-    if (link && link.length > 100 && link.includes("https",0) && link.includes("gclid=")) {
+    if (
+      link &&
+      link.length > 100 &&
+      link.includes("https", 0) &&
+      link.includes("gclid=")
+    ) {
       setRedirectUrl(finalRedirectUrl);
       setFlag(true);
     } else {
@@ -125,27 +135,37 @@ const PostDetail = ({ post }) => {
             adFormat={"auto"}
           />
           <div className="mt-8 text-center">
-            {post.downloads.length > 0 &&
-              post.downloads.map((download) => (
-                <div className="inline-block sm:m-2" key={download.url}>
-                  <span
-                    onClick={() => checkForLinkValidation(download.url)}
-                    className="hover:shadow-xl hover:scale-95 hover:bg-indigo-700 m-1 sm:my-2 transition duration-150 text-xs sm:text-base font-bold inline-block bg-pink-600 rounded-full text-white px-4 py-2 sm:px-8 sm:py-3 cursor-pointer"
-                  >
-                    {download.title}
-                  </span>
-                </div>
-              ))}
+            {showDownload ? (
+              <>
+                {post.downloads.length > 0 &&
+                  post.downloads.map((download) => (
+                    <div className="inline-block sm:m-2" key={download.url}>
+                      <span
+                        onClick={() => checkForLinkValidation(download.url)}
+                        className="hover:shadow-xl hover:scale-95 hover:bg-indigo-700 m-1 sm:my-2 transition duration-150 text-xs sm:text-base font-bold inline-block bg-pink-600 rounded-full text-white px-4 py-2 sm:px-8 sm:py-3 cursor-pointer"
+                      >
+                        {download.title}
+                      </span>
+                    </div>
+                  ))}
+              </>
+            ) : (
+              <p className="text-md text-gray-600 dark:text-gray-400 font-normal text-center">
+                Your download link is getting generated <br /> in{" "}
+                <Timer seconds={20} onFinish={() => onFinish("initial")} />{" "}
+                seconds
+              </p>
+            )}
           </div>
         </div>
       </div>
       {flag && (
         <Modal
           classNames={{
-            overlayAnimationIn: 'customEnterOverlayAnimation',
-            overlayAnimationOut: 'customLeaveOverlayAnimation',
-            modalAnimationIn: 'customEnterModalAnimation',
-            modalAnimationOut: 'customLeaveModalAnimation',
+            overlayAnimationIn: "customEnterOverlayAnimation",
+            overlayAnimationOut: "customLeaveOverlayAnimation",
+            modalAnimationIn: "customEnterModalAnimation",
+            modalAnimationOut: "customLeaveModalAnimation",
           }}
           animationDuration={500}
           open={flag}
@@ -154,11 +174,14 @@ const PostDetail = ({ post }) => {
           styles={{
             modal: {
               background: "#FFFF00",
-              borderRadius:"20px"
-            }
+              borderRadius: "20px",
+            },
           }}
         >
-          <SupportSuccess setFlag={setFlag} onFinish={onFinish} />
+          <SupportSuccess
+            setFlag={setFlag}
+            onFinish={() => onFinish("final")}
+          />
         </Modal>
       )}
     </>

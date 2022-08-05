@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { getPages, getPageDetails } from "../services";
 import { useRouter } from "next/router";
 import NotFound from "./404";
 import { PageDetail, Categories, PostWidgets, Loader } from "../components";
 import { AdsContainer } from "../components/AdsContainer";
+import { DOWNLOAD_LIST_EXT } from "../constants/downloadList";
 const pagePaths = [
   "/about",
   "/terms-and-conditions",
@@ -14,20 +15,37 @@ const pagePaths = [
 
 const PageDetails = ({ page }) => {
   const router = useRouter();
+  const [redirectUrl, setRedirectUrl] = useState("");
+
+  const {
+    query: { name, slug },
+  } = router;
+
+  const getMeDownloadLink = ({ link, title }) =>
+    title === name;
+
+  useEffect(() => {
+    const urlObj = DOWNLOAD_LIST_EXT.find(getMeDownloadLink);
+    if(urlObj){
+      setRedirectUrl(urlObj.link)
+    }
+  }, [router.query.name]);
 
   if (router.isFallback) {
     return <Loader />;
   }
 
   if (!pagePaths.includes(router.asPath)) {
-    return <NotFound />;
+    if (slug !== "about") {
+      return <NotFound />;
+    }
   }
 
   return (
-    <div className="container mx-auto px-4 sm:px-10 mb-8">
+    <div className="container mx-auto px-4 sm:px-10 mb-8 ">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
         <div className="col-span-1 lg:col-span-8">
-          <PageDetail page={page} />
+          <PageDetail page={page} url={redirectUrl}/>
         </div>
         <div className="col-span-1 lg:col-span-4">
           <div className="relative lg:sticky top-8">
