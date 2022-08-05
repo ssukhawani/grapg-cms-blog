@@ -25,10 +25,6 @@ export const DOWNLOAD_LIST_EXT = [
     link: "https://drive.google.com/drive/folders/12iSG75TtvGoTgx-6h4sAvNhMt0QnB8si",
   },
   {
-    title: "react-by-brad-traversy",
-    link: "https://drive.google.com/drive/folders/1a67Vj8OokOKk-LatTeekZZX2b6iTXPPC",
-  },
-  {
     title: "solidity-ethereum-blockchain-bootcamp",
     link: "https://drive.google.com/drive/folders/128SoYN6cunk5C3Bbrg52MZ3cUVT8FyVN",
   },
