@@ -5,6 +5,7 @@ import NotFound from "./404";
 import { PageDetail, Categories, PostWidgets, Loader } from "../components";
 import { AdsContainer } from "../components/AdsContainer";
 import { DOWNLOAD_LIST_EXT } from "../constants/downloadList";
+import Head from "next/head";
 const pagePaths = [
   "/about",
   "/terms-and-conditions",
@@ -21,13 +22,12 @@ const PageDetails = ({ page }) => {
     query: { name, slug },
   } = router;
 
-  const getMeDownloadLink = ({ link, title }) =>
-    title === name;
+  const getMeDownloadLink = ({ link, title }) => title === name;
 
   useEffect(() => {
     const urlObj = DOWNLOAD_LIST_EXT.find(getMeDownloadLink);
-    if(urlObj){
-      setRedirectUrl(urlObj.link)
+    if (urlObj) {
+      setRedirectUrl(urlObj.link);
     }
   }, [router.query.name]);
 
@@ -42,24 +42,33 @@ const PageDetails = ({ page }) => {
   }
 
   return (
-    <div className="container mx-auto px-4 sm:px-10 mb-8 ">
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-        <div className="col-span-1 lg:col-span-8">
-          <PageDetail page={page} url={redirectUrl}/>
-        </div>
-        <div className="col-span-1 lg:col-span-4">
-          <div className="relative lg:sticky top-8">
-            <PostWidgets />
-            <Categories />
+    <>
+      <Head>
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2093009960356176"
+          crossOrigin="anonymous"
+        ></script>
+      </Head>
+      <div className="container mx-auto px-4 sm:px-10 mb-8 ">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+          <div className="col-span-1 lg:col-span-8">
+            <PageDetail page={page} url={redirectUrl} slug={slug}/>
+          </div>
+          <div className="col-span-1 lg:col-span-4">
+            <div className="relative lg:sticky top-8">
+              <PostWidgets />
+              <Categories />
+            </div>
           </div>
         </div>
+        <AdsContainer
+          client={"ca-pub-2093009960356176"}
+          slot={"6341267557"}
+          adFormat={"autorelaxed"}
+        />
       </div>
-      <AdsContainer
-        client={"ca-pub-2093009960356176"}
-        slot={"6341267557"}
-        adFormat={"autorelaxed"}
-      />
-    </div>
+    </>
   );
 };
 

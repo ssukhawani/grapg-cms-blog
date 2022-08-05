@@ -6,7 +6,7 @@ import Timer from "./Timer";
 import SupportSuccess from "./SupportSuccess";
 import Modal from "react-responsive-modal";
 
-const PageDetail = ({ page, url }) => {
+const PageDetail = ({ page, url, slug }) => {
   const [showDownload, setShowDownload] = useState(false);
   const [flag, setFlag] = useState(false);
 
@@ -60,7 +60,7 @@ const PageDetail = ({ page, url }) => {
             dangerouslySetInnerHTML={{ __html: page.content.html }}
           />
         </div>
-        {url && (
+        {url && slug === "about" && (
           <div className="py-4 text-center">
             {showDownload ? (
               <span
