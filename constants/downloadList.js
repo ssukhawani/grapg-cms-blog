@@ -101,4 +101,8 @@ export const DOWNLOAD_LIST_EXT = [
     title: "javascript-mastery-complete-path",
     link: "https://drive.google.com/file/d/1FxuN-L3-EeB-PkCeSJv9UVnk24KtDWOG/view",
   },
+  {
+    title: "chrome-extension-development",
+    link: "https://drive.google.com/file/d/1b-sliWRe8UM5zuQDXeNX1dBVYmbVOWxz/view?usp=sharing",
+  },
 ];
