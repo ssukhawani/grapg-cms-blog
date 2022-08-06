@@ -89,4 +89,8 @@ export const DOWNLOAD_LIST_EXT = [
     title: "react-the-complete-guide",
     link: "https://drive.google.com/drive/folders/1bAlEz_RM89EeWRNCvPaEtVUTTQ3zo9mh",
   },
+  {
+    title: "complete-guide-to-building-wordpress-themes",
+    link: "https://drive.google.com/drive/folders/1yvgm-Lp8gH-4d9lLkdnGPt6C9h4KDjVN?usp=sharing",
+  },
 ];
