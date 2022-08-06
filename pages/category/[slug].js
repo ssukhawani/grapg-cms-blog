@@ -122,6 +122,7 @@ const CategoryPost = ({ posts }) => {
                   disabled={!data?.postsConnection?.pageInfo?.hasPreviousPage}
                   onClick={() => {
                     setSkip(skip - 6);
+                    window.scrollTo(0, 150);
                   }}
                   className="hover:ring-2 hover:ring-offset-1 font-semibold focus:ring-white focus:ring-2 focus:ring-offset-1 hover:ring-white focus:bg-black focus:outline-none hover:scale-95  w-full sm:w-auto bg-black transition duration-150 ease-in-out  rounded text-white px-8 py-3 text-sm mt-6 m-1 disabled:bg-gray-400 disabled:text-black"
                 >
@@ -132,6 +133,7 @@ const CategoryPost = ({ posts }) => {
                   disabled={!data?.postsConnection?.pageInfo?.hasNextPage}
                   onClick={() => {
                     setSkip(skip + 6);
+                    window.scrollTo(0, 150);
                   }}
                   className="hover:ring-2 hover:ring-offset-1 font-semibold hover:ring-white focus:ring-white focus:ring-2 focus:ring-offset-1 focus:bg-black focus:outline-none hover:scale-95  w-full sm:w-auto bg-black transition duration-150 ease-in-out rounded text-white px-8 py-3 text-sm mt-6 m-1 disabled:bg-gray-400 disabled:text-black"
                 >
