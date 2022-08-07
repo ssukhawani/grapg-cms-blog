@@ -109,4 +109,8 @@ export const DOWNLOAD_LIST_EXT = [
     title: "rocking-system-design",
     link: "https://drive.google.com/drive/folders/1ZDgR5GSzRZD0xdQVFbRrRcG87i10FVZ3?usp=sharing",
   },
+  {
+    title: "javascript-interview-questions",
+    link: "https://drive.google.com/drive/folders/17CWql-xacqmtQ_lQ4R-qbhIuPYaTCe7j?usp=sharing",
+  },
 ];
