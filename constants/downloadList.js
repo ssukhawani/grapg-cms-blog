@@ -113,4 +113,8 @@ export const DOWNLOAD_LIST_EXT = [
     title: "javascript-interview-questions",
     link: "https://drive.google.com/drive/folders/17CWql-xacqmtQ_lQ4R-qbhIuPYaTCe7j?usp=sharing",
   },
+  {
+    title: "data-science-machine-learning-bootcamp",
+    link: "https://drive.google.com/drive/folders/1I5vQ3tX4Rj9hSmcTYl1vxAG-0wHBCwGD?usp=sharing",
+  },
 ];
