@@ -98,7 +98,7 @@ export const DOWNLOAD_LIST_EXT = [
     link: "https://drive.google.com/drive/folders/1QpveaqleX4RPFoj2JCxRjPBZ2x2-1_Zo?usp=sharing",
   },
   {
-    title: "javascript-mastery-complete-path",
+    title: "complete-path-to-javascript-mastery",
     link: "https://drive.google.com/file/d/1FxuN-L3-EeB-PkCeSJv9UVnk24KtDWOG/view",
   },
   {
