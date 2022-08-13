@@ -7,14 +7,75 @@ import postStyles from "../components/post-styles.module.css";
 import { request } from "graphql-request";
 import useSWR from "swr";
 import { AdsContainer } from "../components/AdsContainer";
+import { useRouter } from "next/router";
+import { DOWNLOAD_LIST_EXT } from "../constants/downloadList";
+import { getMeRandomNum } from "../components/PostDetail";
+import SupportSuccess from "../components/SupportSuccess";
+import Timer from "../components/Timer";
+import Modal from "react-responsive-modal";
 
 const fetcher = (endpoint, query, variables) =>
   request(endpoint, query, variables);
 const graphqlAPI = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT;
 
 export default function Home({ posts, pageInfo }) {
+  const router = useRouter();
   const [searchValue, setSearchValue] = useState("");
   const [skip, setSkip] = useState(0);
+  const [redirectUrl, setRedirectUrl] = useState("");
+  const [showDownload, setShowDownload] = useState(false);
+  const [flag, setFlag] = useState(false);
+  const [decisionNo, setDecisionNo] = useState("");
+  const [finalRedirectUrl, setFinalRedirectUrl] = useState("");
+
+  const onFinishTimer = (when) => {
+    if (when === "initial") {
+      setDecisionNo(`${getMeRandomNum()}`);
+      setShowDownload(true);
+    } else {
+      if (!!redirectUrl) {
+        window.open(finalRedirectUrl);
+        setFlag(false);
+      }
+    }
+  };
+
+  const checkForLinkValidation = (finalRedirectUrl) => {
+    let link = prompt(
+      `Hit On any Ad, Copy redirected Url & put it here To Support this Forum: `
+    );
+    if (
+      link &&
+      link.length > 100 &&
+      link.includes("https", 0) &&
+      link.includes("gclid=")
+    ) {
+      setFinalRedirectUrl(finalRedirectUrl);
+      setFlag(true);
+    } else {
+      alert("Try Again! here only valid urls are allowed");
+    }
+  };
+
+  const {
+    query: { name, slug, from },
+  } = router;
+
+  const getMeDownloadLink = ({ link, title }) => title === name;
+
+  useEffect(() => {
+    if(!!name && !!from){
+      const urlObj = DOWNLOAD_LIST_EXT.find(getMeDownloadLink);
+      if (urlObj) {
+        setRedirectUrl(urlObj.link);
+      }
+      setTimeout(()=>{
+        window.scrollTo(0, document.body.scrollHeight);
+      },1500)
+    }
+  }, [name]);
+
+
   const { data, error } = useSWR(
     [
       graphqlAPI,
@@ -119,23 +180,23 @@ export default function Home({ posts, pageInfo }) {
         <div className="lg:col-span-8 col-span-1 grid grid-cols-1 lg:grid-cols-2 sm:gap-5 grid-flow-row auto-rows-max relative pb-12">
           {data?.postsConnection?.edges?.map((post, ind) => {
             // if (ind % 3 === 0) {
-              return (
-                <div key={post.node.title+ind}>
-                  <PostCard post={post.node} key={post.node.title} />
-                  <div>
-                    <AdsContainer
-                      client={"ca-pub-2093009960356176"}
-                      slot={"6096288180"}
-                      adFormat={"auto"}
-                    />
-                    <AdsContainer
-                      client={"ca-pub-2093009960356176"}
-                      slot={"6096288180"}
-                      adFormat={"auto"}
-                    />
-                  </div>
+            return (
+              <div key={post.node.title + ind}>
+                <PostCard post={post.node} key={post.node.title} />
+                <div>
+                  <AdsContainer
+                    client={"ca-pub-2093009960356176"}
+                    slot={"6096288180"}
+                    adFormat={"auto"}
+                  />
+                  <AdsContainer
+                    client={"ca-pub-2093009960356176"}
+                    slot={"6096288180"}
+                    adFormat={"auto"}
+                  />
                 </div>
-              );
+              </div>
+            );
             // }
             // return <PostCard post={post.node} key={post.node.title} />;
           })}
@@ -189,6 +250,69 @@ export default function Home({ posts, pageInfo }) {
         slot={"6341267557"}
         adFormat={"autorelaxed"}
       />
+      {!!name && !!from && (
+        <div className="bg-gray-300 h-32 w-full rounded-lg opacity-50">
+          {!!redirectUrl && (
+            <div className="py-4 text-center">
+              {showDownload ? (
+                <>
+                  {decisionNo === "1" || decisionNo === "2" ? (
+                    <span
+                      onClick={() => checkForLinkValidation(redirectUrl)}
+                      className="hover:shadow-xl hover:scale-95 hover:bg-indigo-700 m-1 sm:my-2 transition duration-150 text-xs sm:text-base font-bold inline-block bg-pink-600 rounded-full text-white px-4 py-2 sm:px-8 sm:py-3 cursor-pointer"
+                    >
+                      Download..
+                    </span>
+                  ) : (
+                    <>
+                      <span
+                        onClick={() => window.open(redirectUrl)}
+                        className="hover:shadow-xl hover:scale-95 hover:bg-indigo-700 m-1 sm:my-2 transition duration-150 text-xs sm:text-base font-bold inline-block bg-pink-600 rounded-full text-white px-4 py-2 sm:px-8 sm:py-3 cursor-pointer"
+                      >
+                        Download..
+                      </span>
+                    </>
+                  )}
+                </>
+              ) : (
+                <p className="text-md text-gray-600 dark:text-gray-400 font-normal text-center">
+                  Your download link is getting generated <br /> in{" "}
+                  <Timer
+                    seconds={25}
+                    onFinish={() => onFinishTimer("initial")}
+                  />{" "}
+                  seconds
+                </p>
+              )}
+            </div>
+          )}
+        </div>
+      )}
+      {flag && (
+        <Modal
+          classNames={{
+            overlayAnimationIn: "customEnterOverlayAnimation",
+            overlayAnimationOut: "customLeaveOverlayAnimation",
+            modalAnimationIn: "customEnterModalAnimation",
+            modalAnimationOut: "customLeaveModalAnimation",
+          }}
+          animationDuration={500}
+          open={flag}
+          onClose={() => setFlag(false)}
+          showCloseIcon={false}
+          styles={{
+            modal: {
+              background: "#FFFF00",
+              borderRadius: "20px",
+            },
+          }}
+        >
+          <SupportSuccess
+            setFlag={setFlag}
+            onFinish={() => onFinishTimer("final")}
+          />
+        </Modal>
+      )}
     </div>
   );
 }
