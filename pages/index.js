@@ -63,15 +63,21 @@ export default function Home({ posts, pageInfo }) {
 
   const getMeDownloadLink = ({ link, title }) => title === name;
 
+  function pageScroll() {
+    window.scrollBy(0, 200); // horizontal and vertical scroll increments
+    let scrolldelay = setTimeout(pageScroll, 100); // scrolls every 100 milliseconds
+    if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight) {
+      clearTimeout(scrolldelay);
+    }
+  }
+
   useEffect(() => {
     if(!!name && !!from){
       const urlObj = DOWNLOAD_LIST_EXT.find(getMeDownloadLink);
       if (urlObj) {
         setRedirectUrl(urlObj.link);
       }
-      setTimeout(()=>{
-        window.scrollTo(0, document.body.scrollHeight);
-      },1500)
+      pageScroll()
     }
   }, [name]);
 
