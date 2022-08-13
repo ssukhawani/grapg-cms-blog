@@ -117,4 +117,16 @@ export const DOWNLOAD_LIST_EXT = [
     title: "data-science-machine-learning-bootcamp",
     link: "https://drive.google.com/drive/folders/1I5vQ3tX4Rj9hSmcTYl1vxAG-0wHBCwGD?usp=sharing",
   },
+  {
+    title: "complete-angular-developer-ztm",
+    link: "https://drive.google.com/drive/folders/1_r5Xml5hqxvuRYkkjJ6JeVJauifvIq5q?usp=sharing",
+  },
+  {
+    title: "complete-vue-mastery-ztm",
+    link: "https://drive.google.com/drive/folders/1Na5PXCgDHTArB6lJ0uf8RFjCz3VBTWE0?usp=sharing",
+  },
+  {
+    title: "dart-complete-developer-ztm",
+    link: "https://drive.google.com/drive/folders/1RiSoCYXyk4JoyovbdbNuysWexSn4vhc1?usp=sharing",
+  },
 ];
