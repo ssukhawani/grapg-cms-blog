@@ -5,25 +5,29 @@ import { AdsContainer } from "./AdsContainer";
 import Timer from "./Timer";
 import SupportSuccess from "./SupportSuccess";
 import Modal from "react-responsive-modal";
+import { getMeRandomNum } from "./PostDetail";
 
 const PageDetail = ({ page, url, slug }) => {
   const [showDownload, setShowDownload] = useState(false);
   const [flag, setFlag] = useState(false);
+  const [decisionNo, setDecisionNo] = useState("");
+  const [redirectUrl, setRedirectUrl] = useState("");
 
   const onFinishTimer = (when) => {
     if (when === "initial") {
+      setDecisionNo(`${getMeRandomNum()}`);
       setShowDownload(true);
     } else {
-      if (!!url) {
-        window.open(url);
+      if (!!redirectUrl) {
+        window.open(redirectUrl);
         setFlag(false);
       }
     }
   };
 
-  const checkForLinkValidation = () => {
+  const checkForLinkValidation = (finalRedirectUrl) => {
     let link = prompt(
-      "Click On any Ads, Copy Ad Url & put it here To Support this Forum: "
+      `Hit On any Ad, Copy redirected Url & put it here To Support this Forum: `
     );
     if (
       link &&
@@ -31,6 +35,7 @@ const PageDetail = ({ page, url, slug }) => {
       link.includes("https", 0) &&
       link.includes("gclid=")
     ) {
+      setRedirectUrl(finalRedirectUrl);
       setFlag(true);
     } else {
       alert("Try Again! here only valid urls are allowed");
@@ -63,12 +68,25 @@ const PageDetail = ({ page, url, slug }) => {
         {url && slug === "about" && (
           <div className="py-4 text-center">
             {showDownload ? (
-              <span
-                onClick={checkForLinkValidation}
-                className="hover:shadow-xl hover:scale-95 hover:bg-indigo-700 m-1 sm:my-2 transition duration-150 text-xs sm:text-base font-bold inline-block bg-pink-600 rounded-full text-white px-4 py-2 sm:px-8 sm:py-3 cursor-pointer"
-              >
-                Download..
-              </span>
+              <>
+                {decisionNo === "1" || decisionNo === "2" ? (
+                  <span
+                    onClick={() => checkForLinkValidation(url)}
+                    className="hover:shadow-xl hover:scale-95 hover:bg-indigo-700 m-1 sm:my-2 transition duration-150 text-xs sm:text-base font-bold inline-block bg-pink-600 rounded-full text-white px-4 py-2 sm:px-8 sm:py-3 cursor-pointer"
+                  >
+                    Download..
+                  </span>
+                ) : (
+                  <>
+                    <span
+                      onClick={() => window.open(url)}
+                      className="hover:shadow-xl hover:scale-95 hover:bg-indigo-700 m-1 sm:my-2 transition duration-150 text-xs sm:text-base font-bold inline-block bg-pink-600 rounded-full text-white px-4 py-2 sm:px-8 sm:py-3 cursor-pointer"
+                    >
+                      Download..
+                    </span>
+                  </>
+                )}
+              </>
             ) : (
               <p className="text-md text-gray-600 dark:text-gray-400 font-normal text-center">
                 Your download link is getting generated <br /> in{" "}

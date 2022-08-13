@@ -7,7 +7,7 @@ import { Modal } from "react-responsive-modal";
 import SupportSuccess from "./SupportSuccess";
 import Timer from "./Timer";
 
-const getMeRandomNum = () => Math.floor(Math.random() * 4);
+export const getMeRandomNum = () => Math.floor(Math.random() * 4);
 
 const PostDetail = ({ post }) => {
   const [flag, setFlag] = useState(false);
@@ -27,7 +27,7 @@ const PostDetail = ({ post }) => {
 
   const checkForLinkValidation = (finalRedirectUrl) => {
     let link = prompt(
-      "Click On any Ads, Copy Ad Url & put it here To Support this Forum: "
+      "Hit On any Ad, Copy redirected Url & put it here To Support this Forum:"
     );
     if (
       link &&
