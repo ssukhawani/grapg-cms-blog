@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Head from "next/head";
 import { Categories, PostCard, PostWidgets } from "../components";
 // import { getPosts, getSearchPosts } from "../services";
@@ -19,6 +19,7 @@ const fetcher = (endpoint, query, variables) =>
 const graphqlAPI = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT;
 
 export default function Home({ posts, pageInfo }) {
+  const bottomRef = useRef(null);
   const router = useRouter();
   const [searchValue, setSearchValue] = useState("");
   const [skip, setSkip] = useState(0);
@@ -63,24 +64,19 @@ export default function Home({ posts, pageInfo }) {
 
   const getMeDownloadLink = ({ link, title }) => title === name;
 
-  function pageScroll() {
-    window.scrollBy(0, 200); // horizontal and vertical scroll increments
-    let scrolldelay = setTimeout(pageScroll, 100); // scrolls every 100 milliseconds
-    if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight) {
-      clearTimeout(scrolldelay);
-    }
-  }
-
   useEffect(() => {
-    if(!!name && !!from){
+    if (!!name && !!from) {
       const urlObj = DOWNLOAD_LIST_EXT.find(getMeDownloadLink);
       if (urlObj) {
         setRedirectUrl(urlObj.link);
       }
-      pageScroll()
+      setTimeout(() => {
+        bottomRef.current?.scrollIntoView({
+          behavior: "smooth",
+        });
+      }, 4000);
     }
   }, [name]);
-
 
   const { data, error } = useSWR(
     [
@@ -257,7 +253,10 @@ export default function Home({ posts, pageInfo }) {
         adFormat={"autorelaxed"}
       />
       {!!name && !!from && (
-        <div className="bg-gray-300 h-32 w-full rounded-lg opacity-50">
+        <div
+          className="bg-gray-300 h-32 w-full rounded-lg opacity-50"
+          ref={bottomRef}
+        >
           {!!redirectUrl && (
             <div className="py-4 text-center">
               {showDownload ? (
