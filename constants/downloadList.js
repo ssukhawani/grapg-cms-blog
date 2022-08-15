@@ -133,4 +133,8 @@ export const DOWNLOAD_LIST_EXT = [
     title: "videoscribe-whiteboard-animation-for-freelance-business",
     link: "https://drive.google.com/drive/folders/1XfHz77xy2LrrVDEj8BDb93YwxDNHwpLi?usp=sharing",
   },
+  {
+    title: "video-editing-masterclass",
+    link: "https://drive.google.com/drive/folders/1DiGB7wV5sK_SyThZ1KNEGmQDQBdl7kh0?usp=sharing",
+  },
 ];
