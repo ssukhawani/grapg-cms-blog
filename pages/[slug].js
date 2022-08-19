@@ -6,6 +6,7 @@ import { PageDetail, Categories, PostWidgets, Loader } from "../components";
 import { AdsContainer } from "../components/AdsContainer";
 import { DOWNLOAD_LIST_EXT } from "../constants/downloadList";
 import Script from "next/script";
+import { BLACK_LIST_DMCA } from "../constants/dmca-list";
 const pagePaths = [
   "/about",
   "/terms-and-conditions",
@@ -21,6 +22,15 @@ const PageDetails = ({ page }) => {
   const {
     query: { name, slug },
   } = router;
+
+  if (BLACK_LIST_DMCA.includes(`/post/${name}`)) {
+    router.push({
+      pathname: "/",
+      state: {
+        lookingFor: name,
+      },
+    });
+  }
 
   const getMeDownloadLink = ({ link, title }) => title === name;
 
