@@ -20,14 +20,23 @@ const graphqlAPI = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT;
 
 export default function Home({ posts, pageInfo }) {
   const bottomRef = useRef(null);
+  const initialRenderRef = useRef(true);
   const router = useRouter();
   const [searchValue, setSearchValue] = useState("");
   const [skip, setSkip] = useState(0);
   const [redirectUrl, setRedirectUrl] = useState("");
   const [showDownload, setShowDownload] = useState(false);
+  const [initialTimerFlag, setInitialTimerFlag] = useState(false);
   const [flag, setFlag] = useState(false);
   const [decisionNo, setDecisionNo] = useState("");
   const [finalRedirectUrl, setFinalRedirectUrl] = useState("");
+
+  useEffect(() => {
+    if (initialRenderRef.current) {
+      setInitialTimerFlag(true);
+    }
+    initialRenderRef.current = false;
+  }, []);
 
   const onFinishTimer = (when) => {
     if (when === "initial") {
@@ -53,6 +62,8 @@ export default function Home({ posts, pageInfo }) {
     ) {
       setFinalRedirectUrl(finalRedirectUrl);
       setFlag(true);
+      setShowDownload(false);
+      setInitialTimerFlag(false);
     } else {
       alert("Try Again! here only valid urls are allowed");
     }
@@ -254,14 +265,14 @@ export default function Home({ posts, pageInfo }) {
       />
       {!!name && !!from && (
         <div
-          className="bg-gray-300 h-32 w-full rounded-lg opacity-50"
+          className="h-32 w-full rounded-lg opacity-50"
           ref={bottomRef}
         >
           {!!redirectUrl && (
             <div className="py-4 text-center">
               {showDownload ? (
                 <>
-                  { ["1","2","3"].includes(decisionNo) ? (
+                  {["1", "2", "3"].includes(decisionNo) ? (
                     <span
                       onClick={() => checkForLinkValidation(redirectUrl)}
                       className="hover:shadow-xl hover:scale-95 hover:bg-indigo-700 m-1 sm:my-2 transition duration-150 text-xs sm:text-base font-bold inline-block bg-pink-600 rounded-full text-white px-4 py-2 sm:px-8 sm:py-3 cursor-pointer"
@@ -280,14 +291,18 @@ export default function Home({ posts, pageInfo }) {
                   )}
                 </>
               ) : (
-                <p className="text-md text-gray-600 dark:text-gray-400 font-normal text-center">
-                  Your download link is getting generated <br /> in{" "}
-                  <Timer
-                    seconds={25}
-                    onFinish={() => onFinishTimer("initial")}
-                  />{" "}
-                  seconds
-                </p>
+                <>
+                  {initialTimerFlag && (
+                    <p className="text-md text-black dark:text-gray-400 font-normal text-center">
+                      Your download link is getting generated <br /> in{" "}
+                      <Timer
+                        seconds={25}
+                        onFinish={() => onFinishTimer("initial")}
+                      />{" "}
+                      seconds
+                    </p>
+                  )}
+                </>
               )}
             </div>
           )}

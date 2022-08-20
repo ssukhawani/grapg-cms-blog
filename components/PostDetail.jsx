@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import moment from "moment";
 import postStyles from "./post-styles.module.css";
 import Head from "next/head";
@@ -13,7 +13,16 @@ const PostDetail = ({ post }) => {
   const [flag, setFlag] = useState(false);
   const [redirectUrl, setRedirectUrl] = useState("");
   const [showDownload, setShowDownload] = useState(false);
+  const [initialTimerFlag, setInitialTimerFlag] = useState(false);
   const [decisionNo, setDecisionNo] = useState("");
+  const initialRenderRef = useRef(true);
+
+  useEffect(() => {
+    if (initialRenderRef.current) {
+      setInitialTimerFlag(true);
+    }
+    initialRenderRef.current = false;
+  }, []);
 
   const onFinish = (when) => {
     if (when === "initial") {
@@ -37,6 +46,8 @@ const PostDetail = ({ post }) => {
     ) {
       setRedirectUrl(finalRedirectUrl);
       setFlag(true);
+      setShowDownload(false);
+      setInitialTimerFlag(false);
     } else {
       alert("Try Again! here only valid urls are allowed");
     }
@@ -144,7 +155,7 @@ const PostDetail = ({ post }) => {
                 {post.downloads.length > 0 &&
                   post.downloads.map((download) => (
                     <div className="inline-block sm:m-2" key={download.url}>
-                      {decisionNo === "1" || decisionNo === "2" ? (
+                      {["1", "2", "3"].includes(decisionNo) ? (
                         <span
                           onClick={() => checkForLinkValidation(download.url)}
                           className="hover:shadow-xl hover:scale-95 hover:bg-indigo-700 m-1 sm:my-2 transition duration-150 text-xs sm:text-base font-bold inline-block bg-pink-600 rounded-full text-white px-4 py-2 sm:px-8 sm:py-3 cursor-pointer"
@@ -163,11 +174,15 @@ const PostDetail = ({ post }) => {
                   ))}
               </>
             ) : (
-              <p className="text-md text-gray-600 dark:text-gray-400 font-normal text-center">
-                Your download link is getting generated <br /> in{" "}
-                <Timer seconds={20} onFinish={() => onFinish("initial")} />{" "}
-                seconds
-              </p>
+              <>
+                {initialTimerFlag && (
+                  <p className="text-md text-gray-600 dark:text-gray-400 font-normal text-center">
+                    Your download link is getting generated <br /> in{" "}
+                    <Timer seconds={20} onFinish={() => onFinish("initial")} />{" "}
+                    seconds
+                  </p>
+                )}
+              </>
             )}
           </div>
         </div>
