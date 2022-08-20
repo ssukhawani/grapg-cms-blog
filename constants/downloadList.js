@@ -137,4 +137,16 @@ export const DOWNLOAD_LIST_EXT = [
     title: "video-editing-masterclass",
     link: "https://drive.google.com/drive/folders/1DiGB7wV5sK_SyThZ1KNEGmQDQBdl7kh0?usp=sharing",
   },
+  {
+    title: "data-structures-algorithms-javascript",
+    link: "https://drive.google.com/drive/folders/18EzM4pL_v7qh09iWj1uce_jMxpyBiJXX?usp=sharing",
+  },
+  {
+    title: "data-structures-algorithms-python",
+    link: "https://drive.google.com/drive/folders/1w5algrvg6yfXznAvQn5ksRXnWvrbdqPE?usp=sharing",
+  },
+  {
+    title: "data-structures-and-algorithms-java",
+    link: "https://drive.google.com/drive/folders/1xtLfToWFTHxL-0_9L-B7_t_5LsUWMV6f?usp=sharing",
+  },
 ];
