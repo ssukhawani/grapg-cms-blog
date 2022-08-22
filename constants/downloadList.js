@@ -149,4 +149,8 @@ export const DOWNLOAD_LIST_EXT = [
     title: "data-structures-and-algorithms-java",
     link: "https://drive.google.com/drive/folders/1xtLfToWFTHxL-0_9L-B7_t_5LsUWMV6f?usp=sharing",
   },
+  {
+    title: "devops-projects",
+    link: "https://drive.google.com/drive/folders/1hEKfrJrfDuAKg2y0Im23cfXAWMrdu1hc?usp=sharing",
+  },
 ];
