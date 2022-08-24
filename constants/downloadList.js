@@ -153,4 +153,12 @@ export const DOWNLOAD_LIST_EXT = [
     title: "devops-projects",
     link: "https://drive.google.com/drive/folders/1hEKfrJrfDuAKg2y0Im23cfXAWMrdu1hc?usp=sharing",
   },
+  {
+    title: "mern-stack-news-application-with-tailwind-css",
+    link: "https://drive.google.com/drive/folders/1ZL_VHtdrH6UwF5RDxo9sqV7Ol8UV6Lx2?usp=sharing",
+  },
+  {
+    title: "react-and-nodejs-project-build-a-torrent-search-engine",
+    link: "https://drive.google.com/file/d/1Nyu8c5xbEh-zyaEJ3FXs-CeFPH5mCq9s/view?usp=sharing",
+  },
 ];
