@@ -161,4 +161,20 @@ export const DOWNLOAD_LIST_EXT = [
     title: "react-and-nodejs-project-build-a-torrent-search-engine",
     link: "https://drive.google.com/file/d/1Nyu8c5xbEh-zyaEJ3FXs-CeFPH5mCq9s/view?usp=sharing",
   },
+  {
+    title: "full-stack-web-dev-mern",
+    link: "https://drive.google.com/drive/folders/1ITDC_l95zdcytSSjxfs5XgdIwhiJzfdm?usp=sharing",
+  },
+  {
+    title: "competitive-programming",
+    link: "https://drive.google.com/drive/folders/1IZa804r1fMyKrU7-vGfG22BbKwQv1QbV?usp=sharing",
+  },
+  {
+    title: "java-data-structures-and-algorithms",
+    link: "https://drive.google.com/drive/folders/1JV7BkYV9mcBDOWX2M3CJM5mT1NzsbQBl?usp=sharing",
+  },
+  {
+    title: "c-plus-plus-data-structures-and-algorithms",
+    link: "https://drive.google.com/drive/folders/1JiKqFJdtm2lwBoSnemGtAqiLEGqCb0cN?usp=sharing",
+  },
 ];
