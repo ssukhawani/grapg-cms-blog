@@ -177,4 +177,16 @@ export const DOWNLOAD_LIST_EXT = [
     title: "c-plus-plus-data-structures-and-algorithms",
     link: "https://drive.google.com/drive/folders/1JiKqFJdtm2lwBoSnemGtAqiLEGqCb0cN?usp=sharing",
   },
+  {
+    title: "python-django-the-practical-guide",
+    link: "https://drive.google.com/drive/folders/1hAzPO4xxqx61isBxcZ0pOA8NgI-vNsb8?usp=sharing",
+  },
+  {
+    title: "django-with-react-an-ecommerce-website",
+    link: "https://mega.nz/folder/H1sBHCiD#g9JjY4gHU3vEz_oiKbMKEQ/folder/f4tjSKiL",
+  },
+  {
+    title: "django-react-build-a-location-based-real-estate-website",
+    link: "https://drive.google.com/drive/folders/1PEX0DUdQYKCUCbrtXGzSNMzXx9jR8WEw?usp=sharing",
+  },
 ];
