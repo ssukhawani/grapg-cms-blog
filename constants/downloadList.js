@@ -189,4 +189,56 @@ export const DOWNLOAD_LIST_EXT = [
     title: "django-react-build-a-location-based-real-estate-website",
     link: "https://drive.google.com/drive/folders/1PEX0DUdQYKCUCbrtXGzSNMzXx9jR8WEw?usp=sharing",
   },
+  {
+    title: "intro-to-motion-graphics-explainer-videos-from-storyboard-to-animation",
+    link: "https://drive.google.com/drive/folders/1DaAT_Zq5d_qrDEPgewB5WsjZm4exnYkI?usp=sharing",
+  },
+  {
+    title: "animated-explainer-video-with-voice-over-in-powerpoint",
+    link: "https://drive.google.com/drive/folders/143G1ET24uAcUuyhJ0U9Xtu1Ufjlbd0CB?usp=sharing",
+  },
+  {
+    title: "animated-whiteboard-explainer-videos",
+    link: "https://drive.google.com/drive/folders/13V23vxmCf4jQrgkRNLay72sHnWC_eqG0?usp=sharing",
+  },
+  {
+    title: "blender-3d-design-3d-characters-in-blender-from-scratch",
+    link: "https://drive.google.com/drive/folders/19TWrUJqhsLA8nlHViP1qHLecHPCrUEi5?usp=sharing",
+  },
+  {
+    title: "create-animated-explainer-videos-with-powerpoint",
+    link: "https://drive.google.com/drive/folders/101ZLOBCJ0EsQDlO6k12aloLz_CknBVf7?usp=sharing",
+  },
+  {
+    title: "create-animated-whiteboard-videos-in-powerpoint",
+    link: "https://drive.google.com/drive/folders/18VmDFmdkqXIFf2MJOmapVKr__S5WxutU?usp=sharing",
+  },
+  {
+    title: "create-attention-grabbing-2d-animation-videos-in-vyond",
+    link: "https://drive.google.com/drive/folders/156bAWmCdRUlxZJve0iY2RjmCqBY8pETh?usp=sharing",
+  },
+  {
+    title: "how-to-create-explainer-videos-using-adobe-after-effects",
+    link: "https://drive.google.com/drive/folders/1-1MRW9_IPVJYGo80x0AEOJ8oGPMgngML?usp=sharing",
+  },
+  {
+    title: "motion-design-project-workflow-from-script-to-final-animation",
+    link: "https://drive.google.com/drive/folders/161cPJX_H_jCEBwM78xEIpNo2gLDVun57?usp=sharing",
+  },
+  {
+    title: "the-beginner-s-guide-to-adobe-after-effects",
+    link: "https://drive.google.com/drive/folders/17EeAPqJnr0p5LjnEMoJHHSbqB6N5uMiI?usp=sharing",
+  },
+  {
+    title: "video-editing-with-adobe-premiere-pro-for-beginners",
+    link: "https://drive.google.com/drive/folders/1Akr8_3JaW6JhX14Y_rpE4X8gL4Wc25zn?usp=sharing",
+  },
+  {
+    title: "video-editing-with-final-cut-pro-x-from-beginner-to-youtuber",
+    link: "https://drive.google.com/drive/folders/1DPZggftxeJVUJXdlN4tg50PBPhVU0vwQ?usp=sharing",
+  },
+  {
+    title: "youtube-for-beginners-how-to-start-grow-your-youtube-channel",
+    link: "https://drive.google.com/drive/folders/1BhyBgvKUl6--GZdrzU-vMny6oqzkpNlQ?usp=sharing",
+  },
 ];
