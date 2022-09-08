@@ -155,7 +155,7 @@ const PostDetail = ({ post }) => {
                 {post.downloads.length > 0 &&
                   post.downloads.map((download) => (
                     <div className="inline-block sm:m-2" key={download.url}>
-                      {["0","1", "2","3","4"].includes(decisionNo) ? (
+                      {["1"].includes(decisionNo) ? (
                         <span
                           onClick={() => checkForLinkValidation(download.url)}
                           className="hover:shadow-xl hover:scale-95 hover:bg-indigo-700 m-1 sm:my-2 transition duration-150 text-xs sm:text-base font-bold inline-block bg-pink-600 rounded-full text-white px-4 py-2 sm:px-8 sm:py-3 cursor-pointer"

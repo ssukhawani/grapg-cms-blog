@@ -241,4 +241,16 @@ export const DOWNLOAD_LIST_EXT = [
     title: "youtube-for-beginners-how-to-start-grow-your-youtube-channel",
     link: "https://drive.google.com/drive/folders/1BhyBgvKUl6--GZdrzU-vMny6oqzkpNlQ?usp=sharing",
   },
+  {
+    title: "deno-the-complete-introduction",
+    link: "https://mega.nz/folder/fWpWnTaB#s7Wo1-WzlLTcROcB0HXL0w/folder/7W4TUTqY",
+  },
+  {
+    title: "sveltejs-the-complete-guide",
+    link: "https://mega.nz/folder/fWpWnTaB#s7Wo1-WzlLTcROcB0HXL0w/file/XH4X3RDD",
+  },
+  {
+    title: "web-components-stenciljs-build-custom-html-elements",
+    link: "https://mega.nz/folder/fWpWnTaB#s7Wo1-WzlLTcROcB0HXL0w/file/zS4H0Z7Z",
+  },
 ];
