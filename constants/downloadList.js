@@ -258,10 +258,6 @@ export const DOWNLOAD_LIST_EXT = [
     link: "https://mega.nz/folder/fWpWnTaB#s7Wo1-WzlLTcROcB0HXL0w/file/qfgDwDZL",
   },
   {
-    title: "clean-code-academind",
-    link: "https://mega.nz/folder/fWpWnTaB#s7Wo1-WzlLTcROcB0HXL0w/file/jeoXALqK",
-  },
-  {
     title: "nodejs-the-complete-guide",
     link: "https://mega.nz/folder/fWpWnTaB#s7Wo1-WzlLTcROcB0HXL0w/file/qfgDwDZL",
   },
