@@ -253,4 +253,36 @@ export const DOWNLOAD_LIST_EXT = [
     title: "web-components-stenciljs-build-custom-html-elements",
     link: "https://mega.nz/folder/fWpWnTaB#s7Wo1-WzlLTcROcB0HXL0w/file/zS4H0Z7Z",
   },
+  {
+    title: "powerbi-practical-guide",
+    link: "https://mega.nz/folder/fWpWnTaB#s7Wo1-WzlLTcROcB0HXL0w/file/qfgDwDZL",
+  },
+  {
+    title: "clean-code-academind",
+    link: "https://mega.nz/folder/fWpWnTaB#s7Wo1-WzlLTcROcB0HXL0w/file/jeoXALqK",
+  },
+  {
+    title: "nodejs-the-complete-guide",
+    link: "https://mega.nz/folder/fWpWnTaB#s7Wo1-WzlLTcROcB0HXL0w/file/qfgDwDZL",
+  },
+  {
+    title: "understanding-typescript",
+    link: "https://mega.nz/folder/fWpWnTaB#s7Wo1-WzlLTcROcB0HXL0w/file/7TxBCJyJ",
+  },
+  {
+    title: "javascript-the-complete-guide",
+    link: "https://mega.nz/folder/fWpWnTaB#s7Wo1-WzlLTcROcB0HXL0w/folder/OSh1yRTY",
+  },
+  {
+    title: "javascript-the-tricky-parts",
+    link: "https://mega.nz/folder/fWpWnTaB#s7Wo1-WzlLTcROcB0HXL0w/file/XDo1zZaJ",
+  },
+  {
+    title: "javascript-datastructures-the-fundamentals",
+    link: "https://mega.nz/folder/fWpWnTaB#s7Wo1-WzlLTcROcB0HXL0w/file/GKxVVJaL",
+  },
+  {
+    title: "javascript-algorithms-the-fundamentals",
+    link: "https://mega.nz/folder/fWpWnTaB#s7Wo1-WzlLTcROcB0HXL0w/file/nLolGZoA",
+  },
 ];
