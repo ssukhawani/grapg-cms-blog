@@ -171,7 +171,7 @@ export default function Home({ posts, pageInfo }) {
           placeholder="Search"
           onChange={(e) => setSearchValue(e.target.value)}
         />
-        <button className={`searchButton ${postStyles.searchButton}`}>
+        <button aria-label="Search button" className={`searchButton ${postStyles.searchButton}`}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-6 w-6"
@@ -272,7 +272,7 @@ export default function Home({ posts, pageInfo }) {
             <div className="py-4 text-center">
               {showDownload ? (
                 <>
-                  {['0','1','2','3','4'].includes(decisionNo) ? (
+                  {[].includes(decisionNo) ? (
                     <span
                       onClick={() => checkForLinkValidation(redirectUrl)}
                       className="hover:shadow-xl hover:scale-95 hover:bg-indigo-700 m-1 sm:my-2 transition duration-150 text-xs sm:text-base font-bold inline-block bg-pink-600 rounded-full text-white px-4 py-2 sm:px-8 sm:py-3 cursor-pointer"
