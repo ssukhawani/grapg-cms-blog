@@ -273,12 +273,4 @@ export const DOWNLOAD_LIST_EXT = [
     title: "javascript-the-tricky-parts",
     link: "https://mega.nz/folder/fWpWnTaB#s7Wo1-WzlLTcROcB0HXL0w/file/XDo1zZaJ",
   },
-  {
-    title: "javascript-datastructures-the-fundamentals",
-    link: "https://mega.nz/folder/fWpWnTaB#s7Wo1-WzlLTcROcB0HXL0w/file/GKxVVJaL",
-  },
-  {
-    title: "javascript-algorithms-the-fundamentals",
-    link: "https://mega.nz/folder/fWpWnTaB#s7Wo1-WzlLTcROcB0HXL0w/file/nLolGZoA",
-  },
 ];
