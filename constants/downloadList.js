@@ -190,7 +190,8 @@ export const DOWNLOAD_LIST_EXT = [
     link: "https://drive.google.com/drive/folders/1PEX0DUdQYKCUCbrtXGzSNMzXx9jR8WEw?usp=sharing",
   },
   {
-    title: "intro-to-motion-graphics-explainer-videos-from-storyboard-to-animation",
+    title:
+      "intro-to-motion-graphics-explainer-videos-from-storyboard-to-animation",
     link: "https://drive.google.com/drive/folders/1DaAT_Zq5d_qrDEPgewB5WsjZm4exnYkI?usp=sharing",
   },
   {
@@ -272,5 +273,25 @@ export const DOWNLOAD_LIST_EXT = [
   {
     title: "javascript-the-tricky-parts",
     link: "https://mega.nz/folder/fWpWnTaB#s7Wo1-WzlLTcROcB0HXL0w/file/XDo1zZaJ",
+  },
+  {
+    title: "node-with-react-build-deploy-a-fullstack-web-application",
+    link: "https://drive.google.com/drive/folders/1JIX6iMWY-WGiHXi3bOQJUA9cmcVpPbUY?usp=sharing",
+  },
+  {
+    title: "react-native-typescript-the-portfolio-project",
+    link: "https://drive.google.com/drive/folders/1D_m-p5pmvi6jFomqAThdSMnEkwqaE2Y5?usp=sharing",
+  },
+  {
+    title: "complete-web-design-figma-webflow-to-freelancing",
+    link: "https://drive.google.com/drive/folders/1BsKNhYMxyrEGX5Sp40NoJ_YjgEOwTziW?usp=sharing",
+  },
+  {
+    title: "react-beginner-to-advanced-with-redux-ecommerce-app",
+    link: "https://drive.google.com/drive/folders/1jBh3EyqkpNKwhS_oetMuRbaJysGn3mjB?usp=sharing",
+  },
+  {
+    title: "complete-ethical-hacking-bootcamp-ztm",
+    link: "https://drive.google.com/drive/folders/1-XbZfbmkN7sVJoD1R8jK99RiTD1pltp_?usp=sharing",
   },
 ];
