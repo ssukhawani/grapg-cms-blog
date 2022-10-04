@@ -13,6 +13,7 @@ import { getMeRandomNum } from "../components/PostDetail";
 import SupportSuccess from "../components/SupportSuccess";
 import Timer from "../components/Timer";
 import Modal from "react-responsive-modal";
+import { BLACK_LIST_DMCA } from "../constants/dmca-list";
 
 const fetcher = (endpoint, query, variables) =>
   request(endpoint, query, variables);
@@ -72,6 +73,15 @@ export default function Home({ posts, pageInfo }) {
   const {
     query: { name, slug, from },
   } = router;
+
+  if (BLACK_LIST_DMCA.includes(`/post/${name}`)) {
+    router.push({
+      pathname: "/",
+      state: {
+        lookingFor: name,
+      },
+    });
+  }
 
   const getMeDownloadLink = ({ link, title }) => title === name;
 
@@ -272,7 +282,7 @@ export default function Home({ posts, pageInfo }) {
             <div className="py-4 text-center">
               {showDownload ? (
                 <>
-                  {['1'].includes(decisionNo) ? (
+                  {['0','1','2'].includes(decisionNo) ? (
                     <span
                       onClick={() => checkForLinkValidation(redirectUrl)}
                       className="hover:shadow-xl hover:scale-95 hover:bg-indigo-700 m-1 sm:my-2 transition duration-150 text-xs sm:text-base font-bold inline-block bg-pink-600 rounded-full text-white px-4 py-2 sm:px-8 sm:py-3 cursor-pointer"

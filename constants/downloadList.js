@@ -74,7 +74,7 @@ export const DOWNLOAD_LIST_EXT = [
     link: "https://mega.nz/folder/PstwCSRb#bQJvN1fS9vIxzCAg9TszwQ",
   },
   {
-    title: "flutter-dart-complete-guide",
+    title: "flutter-and-dart-complete-guide",
     link: "https://mega.nz/file/Ux8kTBaC#_PwaJAqNiF8btZAJbf-3znKVdFBzbVfsCIO9HOsRCNo",
   },
   {
@@ -292,6 +292,54 @@ export const DOWNLOAD_LIST_EXT = [
   },
   {
     title: "complete-ethical-hacking-bootcamp-ztm",
+    link: "https://drive.google.com/drive/folders/1-XbZfbmkN7sVJoD1R8jK99RiTD1pltp_?usp=sharing",
+  },
+  {
+    title: "next-js-wordpress",
+    link: "https://drive.google.com/drive/folders/1ctDjgLAXwpdkshaH5Y0fUxDamDtZlI-y?usp=sharing",
+  },
+  {
+    title: "laravel-build-complete-inventory-management-system",
+    link: "https://drive.google.com/drive/folders/10hJe6zZR3jFjCOTKDFNMtXthiZtT1-Rl?usp=sharing",
+  },
+  {
+    title: "master-electron",
+    link: "https://drive.google.com/file/d/1Z3saPFP62gMFBYmnMR4ObvmZ2BZyG5kl/view?usp=sharing",
+  },
+  {
+    title: "deploy-a-serverless-django-web-app-with-aws-fargate-2022",
+    link: "https://drive.google.com/drive/folders/1tByjkM46dmlfrVnXUyAVywo528VJivdA?usp=sharing",
+  },
+  {
+    title: "educative-become-database-professional",
+    link: "https://drive.google.com/file/d/1KMwMSSufMEZy63QAIANRQ96ArHRWeAl0/view",
+  },
+  {
+    title: "educative-ace-cpp-coding-interview",
+    link: "https://drive.google.com/file/d/1WUH2FbUfH-t-sj-CycUUTUMkcKrRNhDr/view",
+  },
+  {
+    title: "educative-ace-front-end-interview",
+    link: "https://drive.google.com/file/d/1iL-mviRMcegeJV2lkmbhyEzmwYFvcsKH/view",
+  },
+  {
+    title: "getting-started-with-react-moonhighway",
+    link: "https://drive.google.com/file/d/1iOsZ60jApg-O2VWPl7YSmzaZPkLgSdTL/view?usp=sharing",
+  },
+  {
+    title: "getting-started-with-react-native-moonhighway",
+    link: "https://drive.google.com/file/d/1lpliizFr-YVmJwxdnvbUqiaOYN1HTWEI/view?usp=sharing",
+  },
+  {
+    title: "javascript-for-the-job-moonhighway",
+    link: "https://drive.google.com/file/d/15Kw6YaQGhJh_sHeiUtWRHbZK-sdkb1Eb/view?usp=sharing",
+  },
+  {
+    title: "dynamic-programming-algorithms-master-course",
+    link: "https://drive.google.com/drive/folders/1-XbZfbmkN7sVJoD1R8jK99RiTD1pltp_?usp=sharing",
+  },
+  {
+    title: "webpack-5-and-vite",
     link: "https://drive.google.com/drive/folders/1-XbZfbmkN7sVJoD1R8jK99RiTD1pltp_?usp=sharing",
   },
 ];
