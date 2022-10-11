@@ -336,10 +336,10 @@ export const DOWNLOAD_LIST_EXT = [
   },
   {
     title: "dynamic-programming-algorithms-master-course",
-    link: "https://drive.google.com/drive/folders/1-XbZfbmkN7sVJoD1R8jK99RiTD1pltp_?usp=sharing",
+    link: "https://drive.google.com/drive/folders/1KYN2gfeM6lO896yRwnxmxLrf2FYtGFXd?usp=sharing",
   },
   {
     title: "webpack-5-and-vite",
-    link: "https://drive.google.com/drive/folders/1-XbZfbmkN7sVJoD1R8jK99RiTD1pltp_?usp=sharing",
+    link: "https://drive.google.com/drive/folders/1BvxUqsZXC7YBNy1dKI21-LId9NEJmu0U?usp=sharing",
   },
 ];
