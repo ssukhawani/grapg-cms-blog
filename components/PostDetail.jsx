@@ -108,7 +108,7 @@ const PostDetail = ({ post }) => {
                 height="30px"
                 width="30px"
               />
-              <p className="inline align-middle text-gray-700 ml-2 text-xs md:text-sm">
+              <p className="inline align-middle text-gray-700 ml-2 text-sm md:text-sm">
                 {post.author.name}
               </p>
             </div>
@@ -127,7 +127,7 @@ const PostDetail = ({ post }) => {
                   d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
                 />
               </svg>
-              <span className="align-middle text-xs md:text-sm justify-center">
+              <span className="align-middle text-sm md:text-sm justify-center">
                 {moment(post.createdAt).format("MMM DD, YYYY")}
               </span>
             </div>
@@ -155,17 +155,17 @@ const PostDetail = ({ post }) => {
                 {post.downloads.length > 0 &&
                   post.downloads.map((download) => (
                     <div className="inline-block sm:m-2" key={download.url}>
-                      {['0','1','2','3','4'].includes(decisionNo) ? (
+                      {['0','1'].includes(decisionNo) ? (
                         <span
                           onClick={() => checkForLinkValidation(download.url)}
-                          className="hover:shadow-xl hover:scale-95 hover:bg-indigo-700 m-1 sm:my-2 transition duration-150 text-xs sm:text-base font-bold inline-block bg-pink-600 rounded-full text-white px-4 py-2 sm:px-8 sm:py-3 cursor-pointer"
+                          className="hover:shadow-xl hover:scale-95 hover:bg-indigo-700 m-1 sm:my-2 transition duration-150 text-sm sm:text-base font-bold inline-block bg-pink-600 rounded-full text-white px-4 py-2 sm:px-8 sm:py-3 cursor-pointer"
                         >
                           {download.title}
                         </span>
                       ) : (
                         <span
                           onClick={() => window.open(download.url)}
-                          className="hover:shadow-xl hover:scale-95 hover:bg-indigo-700 m-1 sm:my-2 transition duration-150 text-xs sm:text-base font-bold inline-block bg-pink-600 rounded-full text-white px-4 py-2 sm:px-8 sm:py-3 cursor-pointer"
+                          className="hover:shadow-xl hover:scale-95 hover:bg-indigo-700 m-1 sm:my-2 transition duration-150 text-sm sm:text-base font-bold inline-block bg-pink-600 rounded-full text-white px-4 py-2 sm:px-8 sm:py-3 cursor-pointer"
                         >
                           {download.title}
                         </span>

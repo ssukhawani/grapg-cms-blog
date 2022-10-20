@@ -6,7 +6,7 @@ import postStyles from "./post-styles.module.css";
 
 const PostCard = ({ post }) => {
   return (
-    <div className=" shadow-2xl rounded-lg p-2 lg:p-4 pb-4 lg:pb-5 mb-8 relative bg-white">
+    <div className="shadow-2xl rounded-lg p-2 lg:p-4 pb-4 lg:pb-5 mb-8 relative bg-white">
       {post.isWorking && (
         <div
           className={`ribbon z-10 ${
@@ -37,7 +37,7 @@ const PostCard = ({ post }) => {
             alt={post.author.name}
             className="align-middle rounded-full h-5 w-5 sm:h-7 sm:w-7"
           />
-          <p className="inline align-middle text-gray-700 ml-2 text-xs sm:text-base">
+          <p className="inline align-middle text-gray-700 ml-2 text-sm sm:text-base">
             {post.author.name}
           </p>
         </div>
@@ -56,14 +56,14 @@ const PostCard = ({ post }) => {
               d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
             />
           </svg>
-          <span className="align-middle  text-xs sm:text-base">
+          <span className="align-middle  text-sm sm:text-base">
             {moment(post.createdAt).format("MMM DD, YYYY")}
           </span>
         </div>
       </div>
 
-      <p className="text-center text-gray-700 font-normal mb-4 text-xs sm:text-base">
-        {post.excerpt.slice(0, 100)}...
+      <p className="text-center text-gray-700 font-normal mb-4 text-sm sm:text-base">
+        {post.excerpt.slice(0, 80)}...
       </p>
       <div className="text-center">
         <Link href={`/post/${post.slug}`}>

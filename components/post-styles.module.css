@@ -1,12 +1,12 @@
 .post {
-  @apply leading-relaxed text-sm md:text-base lg:text-lg break-normal ;
+  @apply leading-relaxed text-base md:text-base lg:text-lg break-normal ;
 }
 
 .post p,
 .post ul,
 .post ol,
 .post blockquote {
-  @apply my-4 md:my-6 text-sm md:text-base lg:text-lg;
+  @apply my-4 md:my-6 text-base md:text-base lg:text-lg;
 }
 
 .post h1 {
@@ -22,7 +22,7 @@
 }
 
 .post blockquote {
-  @apply border-l-4 border-gray-400 pl-4 bg-gray-200 sm:py-0.5 text-xs md:text-sm lg:text-lg;
+  @apply border-l-4 border-gray-400 pl-4 bg-gray-200 sm:py-0.5 text-sm py-2 md:text-sm lg:text-lg;
 }
 
 .post pre {
