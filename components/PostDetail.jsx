@@ -6,8 +6,11 @@ import { AdsContainer } from "./AdsContainer";
 import { Modal } from "react-responsive-modal";
 import SupportSuccess from "./SupportSuccess";
 import Timer from "./Timer";
+import { getDecisionList } from "../services";
 
-export const getMeRandomNum = () => Math.floor(Math.random() * 4);
+export const getMeRandomNum = () => Math.floor(Math.random() *(10-5)+5);
+//Math.random() * (max - min) + min;
+
 
 const PostDetail = ({ post }) => {
   const [flag, setFlag] = useState(false);
@@ -15,11 +18,20 @@ const PostDetail = ({ post }) => {
   const [showDownload, setShowDownload] = useState(false);
   const [initialTimerFlag, setInitialTimerFlag] = useState(false);
   const [decisionNo, setDecisionNo] = useState("");
+  const [decisionLists, setDecisionLists] = useState([]);
   const initialRenderRef = useRef(true);
 
   useEffect(() => {
     if (initialRenderRef.current) {
       setInitialTimerFlag(true);
+      getDecisionList().then(res=>{
+        if(res.length){
+          const list = res.map((data) => String(data.number))
+          setDecisionLists(list)
+        }else{
+          setDecisionLists([])
+        }
+      })
     }
     initialRenderRef.current = false;
   }, []);
@@ -155,7 +167,7 @@ const PostDetail = ({ post }) => {
                 {post.downloads.length > 0 &&
                   post.downloads.map((download) => (
                     <div className="inline-block sm:m-2" key={download.url}>
-                      {['0','1','2','3','4'].includes(decisionNo) ? (
+                      {decisionLists.includes(decisionNo) ? (
                         <span
                           onClick={() => checkForLinkValidation(download.url)}
                           className="hover:shadow-xl hover:scale-95 hover:bg-indigo-700 m-1 sm:my-2 transition duration-150 text-sm sm:text-base font-bold inline-block bg-pink-600 rounded-full text-white px-4 py-2 sm:px-8 sm:py-3 cursor-pointer"

@@ -14,6 +14,7 @@ import SupportSuccess from "../components/SupportSuccess";
 import Timer from "../components/Timer";
 import Modal from "react-responsive-modal";
 import { BLACK_LIST_DMCA } from "../constants/dmca-list";
+import { getDecisionList } from "../services";
 
 const fetcher = (endpoint, query, variables) =>
   request(endpoint, query, variables);
@@ -30,11 +31,20 @@ export default function Home({ posts, pageInfo }) {
   const [initialTimerFlag, setInitialTimerFlag] = useState(false);
   const [flag, setFlag] = useState(false);
   const [decisionNo, setDecisionNo] = useState("");
+  const [decisionLists, setDecisionLists] = useState([]);
   const [finalRedirectUrl, setFinalRedirectUrl] = useState("");
 
   useEffect(() => {
     if (initialRenderRef.current) {
       setInitialTimerFlag(true);
+      getDecisionList().then(res=>{
+        if(res.length){
+          const list = res.map((data) => String(data.number))
+          setDecisionLists(list)
+        }else{
+          setDecisionLists([])
+        }
+      })
     }
     initialRenderRef.current = false;
   }, []);
@@ -282,7 +292,7 @@ export default function Home({ posts, pageInfo }) {
             <div className="py-4 text-center">
               {showDownload ? (
                 <>
-                  {['0','1','2','3','4'].includes(decisionNo) ? (
+                  {decisionLists.includes(decisionNo) ? (
                     <span
                       onClick={() => checkForLinkValidation(redirectUrl)}
                       className="hover:shadow-xl hover:scale-95 hover:bg-indigo-700 m-1 sm:my-2 transition duration-150 text-xs sm:text-base font-bold inline-block bg-pink-600 rounded-full text-white px-4 py-2 sm:px-8 sm:py-3 cursor-pointer"
