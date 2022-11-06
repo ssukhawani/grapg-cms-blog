@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { getPages, getPageDetails, getDownloadsById } from "../services";
 import { useRouter } from "next/router";
 import NotFound from "./404";
@@ -15,7 +15,6 @@ const pagePaths = [
 ];
 
 const PageDetails = ({ page }) => {
-  const bottomRef = useRef(null);
   const router = useRouter();
   const [redirectUrl, setRedirectUrl] = useState("");
 
@@ -37,12 +36,6 @@ const PageDetails = ({ page }) => {
       getDownloadsById(id).then((res) => {
         setRedirectUrl(res?.url);
       });
-
-      setTimeout(() => {
-        bottomRef.current?.scrollIntoView({
-          behavior: "smooth",
-        });
-      }, 4000);
     }
   }, [router.query.id]);
 
@@ -70,7 +63,7 @@ const PageDetails = ({ page }) => {
       <div className="container mx-auto px-4 sm:px-10 mb-8 ">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
           <div className="col-span-1 lg:col-span-8">
-            <PageDetail page={page} url={redirectUrl} slug={slug} bottomRef={bottomRef}/>
+            <PageDetail page={page} url={redirectUrl} slug={slug}/>
           </div>
           <div className="col-span-1 lg:col-span-4">
             <div className="relative lg:sticky top-8">

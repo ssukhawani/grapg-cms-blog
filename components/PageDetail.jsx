@@ -8,7 +8,7 @@ import Modal from "react-responsive-modal";
 import { getMeRandomNum } from "./PostDetail";
 import { getDecisionList } from "../services";
 
-const PageDetail = ({ page, url, slug,bottomRef }) => {
+const PageDetail = ({ page, url, slug }) => {
   const [showDownload, setShowDownload] = useState(false);
   const [initialTimerFlag, setInitialTimerFlag] = useState(false);
   const [flag, setFlag] = useState(false);
@@ -88,7 +88,7 @@ const PageDetail = ({ page, url, slug,bottomRef }) => {
           />
         </div>
         {url && slug === "about" && (
-          <div className="py-4 text-center" ref={bottomRef}>
+          <div className="py-4 text-center">
             {showDownload ? (
               <>
                 {decisionLists.includes(decisionNo) ? (

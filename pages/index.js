@@ -101,7 +101,7 @@ export default function Home({ posts, pageInfo }) {
         bottomRef.current?.scrollIntoView({
           behavior: "smooth",
         });
-      }, 4000);
+      }, 6000);
     }
   }, [id]);
 
