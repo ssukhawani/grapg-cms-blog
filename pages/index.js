@@ -8,13 +8,12 @@ import { request } from "graphql-request";
 import useSWR from "swr";
 import { AdsContainer } from "../components/AdsContainer";
 import { useRouter } from "next/router";
-import { DOWNLOAD_LIST_EXT } from "../constants/downloadList";
 import { getMeRandomNum } from "../components/PostDetail";
 import SupportSuccess from "../components/SupportSuccess";
 import Timer from "../components/Timer";
 import Modal from "react-responsive-modal";
 import { BLACK_LIST_DMCA } from "../constants/dmca-list";
-import { getDecisionList } from "../services";
+import { getDecisionList, getDownloadsById } from "../services";
 
 const fetcher = (endpoint, query, variables) =>
   request(endpoint, query, variables);
@@ -55,7 +54,7 @@ export default function Home({ posts, pageInfo }) {
       setShowDownload(true);
     } else {
       if (!!redirectUrl) {
-        window.open(finalRedirectUrl);
+        window.open(atob(finalRedirectUrl));
         setFlag(false);
       }
     }
@@ -81,10 +80,10 @@ export default function Home({ posts, pageInfo }) {
   };
 
   const {
-    query: { name, slug, from },
+    query: { name, slug, from,id },
   } = router;
 
-  if (BLACK_LIST_DMCA.includes(`/post/${name}`)) {
+  if (Boolean(name) && BLACK_LIST_DMCA.includes(`/post/${name}`)) {
     router.push({
       pathname: "/",
       state: {
@@ -93,21 +92,18 @@ export default function Home({ posts, pageInfo }) {
     });
   }
 
-  const getMeDownloadLink = ({ link, title }) => title === name;
-
   useEffect(() => {
-    if (!!name && !!from) {
-      const urlObj = DOWNLOAD_LIST_EXT.find(getMeDownloadLink);
-      if (urlObj) {
-        setRedirectUrl(urlObj.link);
-      }
+    if (!!id && !!from) {
+      getDownloadsById(id).then((res) => {
+        setRedirectUrl(res?.url);
+      });
       setTimeout(() => {
         bottomRef.current?.scrollIntoView({
           behavior: "smooth",
         });
       }, 4000);
     }
-  }, [name]);
+  }, [id]);
 
   const { data, error } = useSWR(
     [
@@ -283,7 +279,7 @@ export default function Home({ posts, pageInfo }) {
         slot={"6341267557"}
         adFormat={"autorelaxed"}
       />
-      {!!name && !!from && (
+      {!!id && !!from && (
         <div
           className="h-32 w-full rounded-lg opacity-50"
           ref={bottomRef}
@@ -302,7 +298,7 @@ export default function Home({ posts, pageInfo }) {
                   ) : (
                     <>
                       <span
-                        onClick={() => window.open(redirectUrl)}
+                        onClick={() => window.open(atob(redirectUrl))}
                         className="hover:shadow-xl hover:scale-95 hover:bg-indigo-700 m-1 sm:my-2 transition duration-150 text-xs sm:text-base font-bold inline-block bg-pink-600 rounded-full text-white px-4 py-2 sm:px-8 sm:py-3 cursor-pointer"
                       >
                         Download..

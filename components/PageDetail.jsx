@@ -8,7 +8,7 @@ import Modal from "react-responsive-modal";
 import { getMeRandomNum } from "./PostDetail";
 import { getDecisionList } from "../services";
 
-const PageDetail = ({ page, url, slug }) => {
+const PageDetail = ({ page, url, slug,bottomRef }) => {
   const [showDownload, setShowDownload] = useState(false);
   const [initialTimerFlag, setInitialTimerFlag] = useState(false);
   const [flag, setFlag] = useState(false);
@@ -39,7 +39,7 @@ const PageDetail = ({ page, url, slug }) => {
       setShowDownload(true);
     } else {
       if (!!redirectUrl) {
-        window.open(redirectUrl);
+        window.open(atob(redirectUrl));
         setFlag(false);
       }
     }
@@ -88,7 +88,7 @@ const PageDetail = ({ page, url, slug }) => {
           />
         </div>
         {url && slug === "about" && (
-          <div className="py-4 text-center">
+          <div className="py-4 text-center" ref={bottomRef}>
             {showDownload ? (
               <>
                 {decisionLists.includes(decisionNo) ? (
@@ -101,7 +101,7 @@ const PageDetail = ({ page, url, slug }) => {
                 ) : (
                   <>
                     <span
-                      onClick={() => window.open(url)}
+                      onClick={() => window.open(atob(url))}
                       className="hover:shadow-xl hover:scale-95 hover:bg-indigo-700 m-1 sm:my-2 transition duration-150 text-xs sm:text-base font-bold inline-block bg-pink-600 rounded-full text-white px-4 py-2 sm:px-8 sm:py-3 cursor-pointer"
                     >
                       Download..

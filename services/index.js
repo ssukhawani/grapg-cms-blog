@@ -336,3 +336,6 @@ export const getPageDetails = async (slug) => {
 
 export const getDecisionList = () =>
   axios.get(`https://api.freecourseuniverse.com/api/pages/final/decision/`).then(({ data }) => data);
+
+export const getDownloadsById = (id) =>
+  axios.get(`https://api.freecourseuniverse.com/api/downloads/${id}/`).then(({ data }) => data);

@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { getPages, getPageDetails } from "../services";
+import React, { useEffect, useRef, useState } from "react";
+import { getPages, getPageDetails, getDownloadsById } from "../services";
 import { useRouter } from "next/router";
 import NotFound from "./404";
 import { PageDetail, Categories, PostWidgets, Loader } from "../components";
 import { AdsContainer } from "../components/AdsContainer";
-import { DOWNLOAD_LIST_EXT } from "../constants/downloadList";
 import Script from "next/script";
 import { BLACK_LIST_DMCA } from "../constants/dmca-list";
 const pagePaths = [
@@ -16,14 +15,15 @@ const pagePaths = [
 ];
 
 const PageDetails = ({ page }) => {
+  const bottomRef = useRef(null);
   const router = useRouter();
   const [redirectUrl, setRedirectUrl] = useState("");
 
   const {
-    query: { name, slug },
+    query: { name, id, slug },
   } = router;
 
-  if (BLACK_LIST_DMCA.includes(`/post/${name}`)) {
+  if (Boolean(name) && BLACK_LIST_DMCA.includes(`/post/${name}`)) {
     router.push({
       pathname: "/",
       state: {
@@ -32,14 +32,19 @@ const PageDetails = ({ page }) => {
     });
   }
 
-  const getMeDownloadLink = ({ link, title }) => title === name;
-
   useEffect(() => {
-    const urlObj = DOWNLOAD_LIST_EXT.find(getMeDownloadLink);
-    if (urlObj) {
-      setRedirectUrl(urlObj.link);
+    if (!!id) {
+      getDownloadsById(id).then((res) => {
+        setRedirectUrl(res?.url);
+      });
+
+      setTimeout(() => {
+        bottomRef.current?.scrollIntoView({
+          behavior: "smooth",
+        });
+      }, 4000);
     }
-  }, [router.query.name]);
+  }, [router.query.id]);
 
   if (router.isFallback) {
     return <Loader />;
@@ -65,7 +70,7 @@ const PageDetails = ({ page }) => {
       <div className="container mx-auto px-4 sm:px-10 mb-8 ">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
           <div className="col-span-1 lg:col-span-8">
-            <PageDetail page={page} url={redirectUrl} slug={slug}/>
+            <PageDetail page={page} url={redirectUrl} slug={slug} bottomRef={bottomRef}/>
           </div>
           <div className="col-span-1 lg:col-span-4">
             <div className="relative lg:sticky top-8">
